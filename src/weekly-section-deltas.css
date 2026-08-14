@@ -1,0 +1,13 @@
+.weekly-section-deltas {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  margin: 0 0 13px !important;
+}
+.weekly-section-deltas > span { padding: 10px; border: 1px solid #e8e8f0; border-radius: 11px; background: #ffffffa8; }
+.weekly-section-deltas b,.weekly-section-deltas em { display: block; }
+.weekly-section-deltas b { margin: 3px 0; font-size: 10px; }
+.weekly-section-deltas em { font-size: 8px; font-style: normal; }
+.weekly-section-deltas em.positive { color: #248763; }
+.weekly-section-deltas em.negative { color: #d26d61; }
+@media(max-width:700px){.weekly-section-deltas{grid-template-columns:1fr!important}}

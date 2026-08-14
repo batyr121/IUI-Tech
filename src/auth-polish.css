@@ -1,0 +1,1 @@
+.google-button:disabled{cursor:not-allowed;opacity:.58;filter:saturate(.25)}.password-input button{min-width:64px;text-align:right;transition:color .2s}.password-input button:hover{color:#6256cf}.auth-card input:invalid:not(:placeholder-shown){border-color:#e9a6aa;box-shadow:0 0 0 3px #e56b7310}.auth-card input:valid:not(:placeholder-shown){border-color:#acdaca}

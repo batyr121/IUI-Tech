@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: iui-technology
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/ready
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: TZ
+        value: Asia/Aqtau
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        sync: false

@@ -1,0 +1,384 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  TEACHER
+  STUDENT
+  PARENT
+  ADMIN
+}
+
+enum SessionStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum DeviceStatus {
+  OFFLINE
+  ONLINE
+  IN_SESSION
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  users     User[]
+  classes   Class[]
+  devices   Device[]
+}
+
+model User {
+  id              String              @id @default(cuid())
+  email           String              @unique
+  passwordHash    String
+  firstName       String
+  lastName        String
+  role            Role
+  organizationId  String?
+  organization    Organization?       @relation(fields: [organizationId], references: [id])
+  parentStudentId String?
+  student         Student?
+  taughtClasses   Class[]             @relation("ClassTeacher")
+  comments        TeacherComment[]
+  bookings        DiagnosticBooking[] @relation("BookingCreator")
+  consents        DataConsent[]       @relation("ConsentOwner")
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+}
+
+model Invite {
+  id             String    @id @default(cuid())
+  code           String    @unique
+  role           Role
+  organizationId String
+  classId        String?
+  studentId      String?
+  email          String?
+  usedAt         DateTime?
+  expiresAt      DateTime
+  createdAt      DateTime  @default(now())
+
+  @@index([organizationId, role, expiresAt])
+}
+
+model Class {
+  id             String          @id @default(cuid())
+  name           String
+  inviteCode     String?         @unique
+  subject        String
+  academicYear   String
+  archived       Boolean         @default(false)
+  organizationId String
+  organization   Organization    @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  teacherId      String
+  teacher        User            @relation("ClassTeacher", fields: [teacherId], references: [id])
+  students       Student[]
+  sessions       EegSession[]
+  schedules      ClassSchedule[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([organizationId])
+}
+
+model Student {
+  id                String               @id @default(cuid())
+  publicId          String               @unique
+  userId            String?              @unique
+  user              User?                @relation(fields: [userId], references: [id])
+  firstName         String
+  lastName          String
+  age               Int?
+  school            String?
+  classId           String?
+  class             Class?               @relation(fields: [classId], references: [id], onDelete: SetNull)
+  xp                Int                  @default(0)
+  level             Int                  @default(1)
+  streak            Int                  @default(0)
+  weeklyGoal        Int                  @default(3)
+  lastHomeworkAt    DateTime?
+  homeworkCompleted Int                  @default(0)
+  sessions          EegSession[]
+  comments          TeacherComment[]
+  diagnostics       DiagnosticAttempt[]
+  homeworkPlans     HomeworkPlan[]
+  bookings          DiagnosticBooking[]
+  consents          DataConsent[]
+  subscriptions     FamilySubscription[]
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+
+  @@index([classId])
+}
+
+model DiagnosticBooking {
+  id            String   @id @default(cuid())
+  studentId     String
+  student       Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  createdById   String
+  createdBy     User     @relation("BookingCreator", fields: [createdById], references: [id])
+  scheduledAt   DateTime
+  durationMin   Int      @default(60)
+  format        String   @default("IN_PERSON")
+  location      String?
+  status        String   @default("BOOKED")
+  paymentStatus String   @default("PENDING")
+  priceKzt      Int      @default(1290)
+  note          String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([studentId, scheduledAt])
+  @@index([scheduledAt, status])
+}
+
+model FamilySubscription {
+  id               String   @id @default(cuid())
+  studentId        String
+  student          Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  planCode         String
+  status           String   @default("PENDING")
+  diagnosticsTotal Int
+  diagnosticsUsed  Int      @default(0)
+  startsAt         DateTime
+  endsAt           DateTime
+  priceKzt         Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([studentId, status])
+}
+
+model DataConsent {
+  id          String    @id @default(cuid())
+  studentId   String
+  student     Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  ownerId     String
+  owner       User      @relation("ConsentOwner", fields: [ownerId], references: [id])
+  consentType String
+  accepted    Boolean
+  version     String    @default("1.0")
+  acceptedAt  DateTime?
+  revokedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([studentId, ownerId, consentType])
+  @@index([studentId])
+}
+
+model ClassSchedule {
+  id          String   @id @default(cuid())
+  classId     String
+  class       Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  weekday     Int
+  startsAt    String
+  durationMin Int      @default(60)
+  room        String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([classId, weekday])
+}
+
+model DiagnosticAttempt {
+  id              String         @id @default(cuid())
+  studentId       String
+  student         Student        @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  eegSessionId    String?        @unique
+  eegSession      EegSession?    @relation(fields: [eegSessionId], references: [id], onDelete: SetNull)
+  grade           Int
+  language        String
+  status          String         @default("COMPLETED")
+  answers         Json
+  sectionScores   Json
+  skillScores     Json
+  gaps            Json
+  strengths       Json
+  recommendations Json
+  sectionTimeline Json
+  totalScore      Int
+  startedAt       DateTime
+  completedAt     DateTime       @default(now())
+  createdAt       DateTime       @default(now())
+  homeworkPlans   HomeworkPlan[]
+
+  @@index([studentId, completedAt])
+}
+
+model HomeworkPlan {
+  id                 String            @id @default(cuid())
+  studentId          String
+  student            Student           @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  sourceDiagnosticId String
+  sourceDiagnostic   DiagnosticAttempt @relation(fields: [sourceDiagnosticId], references: [id], onDelete: Cascade)
+  weekNumber         Int               @default(1)
+  startsAt           DateTime          @default(now())
+  endsAt             DateTime
+  status             String            @default("ACTIVE")
+  focusSkills        Json
+  tasks              HomeworkTask[]
+  checkIn            WeeklyCheckIn?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@index([studentId, startsAt])
+  @@index([sourceDiagnosticId])
+}
+
+model WeeklyCheckIn {
+  id               String       @id @default(cuid())
+  planId           String       @unique
+  plan             HomeworkPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  eegSessionId     String       @unique
+  eegSession       EegSession   @relation(fields: [eegSessionId], references: [id], onDelete: Cascade)
+  dayIndex         Int
+  answers          Json
+  sectionScores    Json
+  skillScores      Json
+  gaps             Json
+  strengths        Json
+  totalScore       Int
+  baselineDelta    Int
+  attentionDelta   Int          @default(0)
+  focusDelta       Int
+  engagementDelta  Int
+  fatigueDelta     Int          @default(0)
+  relaxationDelta  Int          @default(0)
+  signalQuality    Int          @default(0)
+  adaptedTaskCount Int          @default(0)
+  recommendation   String
+  startedAt        DateTime
+  completedAt      DateTime     @default(now())
+  createdAt        DateTime     @default(now())
+
+  @@index([completedAt])
+}
+
+model HomeworkTask {
+  id            String            @id @default(cuid())
+  planId        String
+  plan          HomeworkPlan      @relation(fields: [planId], references: [id], onDelete: Cascade)
+  dayIndex      Int
+  orderIndex    Int
+  subject       String
+  skill         String
+  grade         Int
+  difficulty    Int               @default(1)
+  prompt        String
+  options       Json
+  correctOption Int
+  hint          String
+  explanation   String
+  xpReward      Int               @default(10)
+  completedAt   DateTime?
+  attempts      HomeworkAttempt[]
+  createdAt     DateTime          @default(now())
+
+  @@index([planId, dayIndex, orderIndex])
+}
+
+model HomeworkAttempt {
+  id             String       @id @default(cuid())
+  taskId         String
+  task           HomeworkTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  selectedOption Int
+  correct        Boolean
+  usedHint       Boolean      @default(false)
+  responseTimeMs Int?
+  createdAt      DateTime     @default(now())
+
+  @@index([taskId, createdAt])
+}
+
+model Device {
+  id                 String       @id @default(cuid())
+  name               String
+  serialNumber       String       @unique
+  firmware           String?
+  sensorModel        String?
+  sampleRate         Int?
+  connectedByUserId  String?
+  connectedStudentId String?
+  baudRate           Int          @default(115200)
+  status             DeviceStatus @default(OFFLINE)
+  organizationId     String
+  organization       Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  sessions           EegSession[]
+  lastSeenAt         DateTime?
+  createdAt          DateTime     @default(now())
+
+  @@index([organizationId, status])
+  @@index([connectedStudentId])
+}
+
+model EegSession {
+  id                String              @id @default(cuid())
+  studentId         String
+  student           Student             @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  classId           String?
+  class             Class?              @relation(fields: [classId], references: [id], onDelete: SetNull)
+  deviceId          String?
+  device            Device?             @relation(fields: [deviceId], references: [id], onDelete: SetNull)
+  subject           String?
+  status            SessionStatus       @default(ACTIVE)
+  startedAt         DateTime            @default(now())
+  endedAt           DateTime?
+  attentionAvg      Float?
+  meditationAvg     Float?
+  engagementAvg     Float?
+  focusAvg          Float?
+  relaxationAvg     Float?
+  signalAvg         Float?
+  fatigueScore      Float?
+  emotionalState    String?
+  aiSummary         String?
+  aiRecommendations String?
+  xpAwarded         Int                 @default(0)
+  samples           EegSample[]
+  diagnostics       DiagnosticAttempt[]
+  weeklyCheckIn     WeeklyCheckIn?
+  createdAt         DateTime            @default(now())
+
+  @@index([studentId, startedAt])
+  @@index([status, startedAt])
+}
+
+model EegSample {
+  id         BigInt     @id @default(autoincrement())
+  sessionId  String
+  session    EegSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  timestamp  DateTime
+  raw        Float?
+  attention  Float
+  meditation Float
+  engagement Float
+  focus      Float
+  relaxation Float
+  blink      Float
+  signal     Float
+
+  @@index([sessionId, timestamp])
+}
+
+model TeacherComment {
+  id        String   @id @default(cuid())
+  text      String
+  teacherId String
+  teacher   User     @relation(fields: [teacherId], references: [id])
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([studentId])
+}

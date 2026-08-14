@@ -1,0 +1,17 @@
+{
+  "name": "IUI Technology — AI NeuroLearning",
+  "short_name": "IUI",
+  "description": "Персонализированное обучение с EEG, ESP32 и AI-аналитикой.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f9fc",
+  "theme_color": "#f7f9fc",
+  "icons": [
+    {
+      "src": "/brand/iui-brain-charge-v4.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

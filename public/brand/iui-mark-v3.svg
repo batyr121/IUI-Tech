@@ -1,0 +1,21 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iui-gradient" x1="10" y1="12" x2="54" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#705CF6"/>
+      <stop offset="1" stop-color="#28B8E8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Two cerebral/neural hemispheres built from one simple rounded form each. -->
+  <path d="M27 13H23C15.82 13 10 18.82 10 26V38C10 45.18 15.82 51 23 51H27"
+        stroke="url(#iui-gradient)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M37 13H41C48.18 13 54 18.82 54 26V38C54 45.18 48.18 51 41 51H37"
+        stroke="url(#iui-gradient)" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Central I / EEG pulse. -->
+  <rect x="28.5" y="20" width="7" height="24" rx="3.5" fill="url(#iui-gradient)"/>
+
+  <!-- Minimal neural connection nodes. -->
+  <circle cx="23" cy="32" r="4" fill="url(#iui-gradient)"/>
+  <circle cx="41" cy="32" r="4" fill="url(#iui-gradient)"/>
+</svg>

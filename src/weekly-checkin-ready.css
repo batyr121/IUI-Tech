@@ -1,0 +1,42 @@
+.checkin-ready {
+  min-height: 520px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.checkin-ready > div:first-child {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #eef1ff, #e5f8fb);
+  color: #6659cf;
+  box-shadow: inset 0 0 0 1px #fff, 0 20px 50px #6268a91b;
+}
+
+.checkin-ready > div:first-child svg { width: 38px; }
+.checkin-ready > div:first-child i {
+  position: absolute;
+  inset: -9px;
+  border: 1px solid #6b60d533;
+  border-radius: 35px;
+  animation: checkPulse 2s ease infinite;
+}
+.checkin-ready > small { margin-top: 26px; color: #6659cf; font-size: 9px; font-weight: 850; letter-spacing: .1em; }
+.checkin-ready h1 { margin: 9px 0; font-size: 30px; }
+.checkin-ready > p { max-width: 570px; color: #737c8c; line-height: 1.7; }
+.checkin-ready > .primary { display: flex; align-items: center; gap: 8px; margin-top: 18px; padding: 13px 19px; border-radius: 13px; }
+.checkin-ready > .primary svg { width: 17px; }
+.checkin-ready > span:last-child { margin-top: 12px; color: #969daa; font-size: 9px; }
+.checkin-ready .checkin-inline-error { max-width: 570px; }
+
+@media (max-width: 700px) {
+  .checkin-ready { min-height: calc(100dvh - 70px); padding: 30px 20px; }
+  .checkin-ready h1 { font-size: 25px; }
+}

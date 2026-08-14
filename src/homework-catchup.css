@@ -1,0 +1,1 @@
+.weekly-road article[role=button]{cursor:pointer}.weekly-road article[role=button]:hover{transform:translateY(-3px);border-color:#d8d3f5;box-shadow:0 10px 24px #51479810}.weekly-road article[role=button]:focus-visible{outline:3px solid #776ae42a;outline-offset:3px}.weekly-road article.locked{cursor:not-allowed}.weekly-road article.current:hover{transform:translateY(-4px)}
