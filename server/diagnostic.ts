@@ -64,8 +64,9 @@ const enrich=(item:DiagnosticQuestion,grade:number,index:number):DiagnosticQuest
 const shuffle=<T,>(items:T[],seed:number)=>{const copy=[...items];for(let i=copy.length-1;i>0;i--){seed=(seed*9301+49297)%233280;const j=Math.floor(seed/233280*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]]}return copy};
 export function diagnosticQuestions(grade:number,language:'ru'|'kk',seed=Date.now()){
   const base=[...gradeMath(grade),...gradeLogic(grade),...gradeLanguage(grade,language),...cognitiveExtras(grade,language)].map((item,index)=>enrich(item,grade,index));
-  const bySection=(section:DiagnosticQuestion['section'],count:number)=>shuffle(base.filter(item=>item.section===section),seed+section.length).slice(0,count);
-  return [...bySection('math',8),...bySection('logic',9),...bySection('language',8)];
+  const core=(section:DiagnosticQuestion['section'])=>shuffle(base.filter(item=>item.section===section&&!item.id.startsWith('cx-')),seed+section.length);
+  const cognitive=(section:DiagnosticQuestion['section'])=>shuffle(base.filter(item=>item.section===section&&item.id.startsWith('cx-')),seed+section.length+41);
+  return [...core('math').slice(0,6),...cognitive('math'),...core('logic').slice(0,5),...cognitive('logic'),...core('language').slice(0,6),...cognitive('language')];
 }
 
 export function scoreDiagnostic(grade:number,language:'ru'|'kk',answers:Record<string,number>){

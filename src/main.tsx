@@ -30,9 +30,10 @@ import './boot.css';
 import './audience-section.css';
 import './scenario-cards.css';
 import PlatformPage from './PlatformPages';
+import GuestDiagnostic from './GuestDiagnostic';
 import { api, authApi } from './api';
 
-type Screen = 'boot' | 'landing' | 'auth' | 'dashboard';
+type Screen = 'boot' | 'landing' | 'auth' | 'guest-diagnostic' | 'dashboard';
 
 const chartData = [
   {t:'09:00', attention:66, engagement:58, focus:62}, {t:'09:05', attention:72, engagement:67, focus:68},
@@ -74,19 +75,19 @@ function ProductPreview() {
   </div>
 }
 
-function Landing({openDashboard}:{openDashboard:()=>void}) {
+function Landing({openDashboard,openGuestDiagnostic}:{openDashboard:()=>void;openGuestDiagnostic:()=>void}) {
   const [menu,setMenu]=useState(false);
   useEffect(()=>{const items=[...document.querySelectorAll<HTMLElement>('.landing .section,.landing .logos,.landing .cta,.landing .feature,.landing .step,.landing .quote')];items.forEach((item,index)=>{item.classList.add('scroll-reveal');item.style.setProperty('--reveal-delay',`${Math.min(index%4,3)*55}ms`)});const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');observer.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -45px'});items.forEach(item=>observer.observe(item));return()=>observer.disconnect()},[]);
   return <div className="landing">
     <div className="ambient a1"/><div className="ambient a2"/>
-    <header className="site-header"><Logo/><nav>{nav.map(n=><a key={n} href={'#'+n.toLowerCase().replace(' ','-')}>{n}</a>)}</nav><div className="header-actions"><button className="text-btn" onClick={openDashboard}>Войти</button><button className="primary small" onClick={openDashboard}>Начать работу <ArrowRight/></button></div><button className="mobile-menu" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></header>
-    {menu&&<div className="mobile-nav">{nav.map(n=><a key={n} href="#features" onClick={()=>setMenu(false)}>{n}</a>)}<button className="primary" onClick={openDashboard}>Начать работу</button></div>}
+    <header className="site-header"><Logo/><nav>{nav.map(n=><a key={n} href={'#'+n.toLowerCase().replace(' ','-')}>{n}</a>)}</nav><div className="header-actions"><button className="text-btn" onClick={openDashboard}>Войти</button><button className="primary small" onClick={openGuestDiagnostic}>Пройти диагностику <ArrowRight/></button></div><button className="mobile-menu" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></header>
+    {menu&&<div className="mobile-nav">{nav.map(n=><a key={n} href="#features" onClick={()=>setMenu(false)}>{n}</a>)}<button className="primary" onClick={openGuestDiagnostic}>Пройти диагностику</button></div>}
     <main>
       <section className="hero">
         <div className="hero-kicker"><Sparkles/> Новая эра персонального обучения</div>
         <h1>Transform Education<br/>with <span>AI & Neurotechnology</span></h1>
         <p>Понимайте, как учится каждый ребёнок. EEG и искусственный интеллект превращают нейросигналы в понятные рекомендации для преподавателя.</p>
-        <div className="hero-actions"><button className="primary big" onClick={openDashboard}>Начать работу <ArrowRight/></button><button className="secondary big" onClick={()=>document.querySelector('#platform')?.scrollIntoView({behavior:'smooth'})}><span className="play"><Play fill="currentColor"/></span> Посмотреть демо</button></div>
+        <div className="hero-actions"><button className="primary big" onClick={openGuestDiagnostic}>Пройти без регистрации <ArrowRight/></button><button className="secondary big" onClick={()=>document.querySelector('#platform')?.scrollIntoView({behavior:'smooth'})}><span className="play"><Play fill="currentColor"/></span> Посмотреть демо</button></div>
         <div className="trust"><span><Check/> Настройка за 5 минут</span><span><Check/> Без банковской карты</span><span><Check/> 14 дней бесплатно</span></div>
         <div className="preview-wrap" id="platform"><div className="preview-glow"/><ProductPreview/></div>
       </section>
@@ -159,11 +160,18 @@ function Dashboard({back}:{back:()=>void}) {
   const fullName=currentUser?`${currentUser.firstName} ${currentUser.lastName}`:'Загрузка...';
   const orgName=currentUser?.organization?.name||'Моя организация';
   const roleLabel=currentUser?.role==='TEACHER'?'Учитель':currentUser?.role==='STUDENT'?'Ученик':currentUser?.role==='PARENT'?'Родитель':'Администратор';
-  const roleNav=currentUser?.role==='STUDENT'?sideNav.filter(([,name])=>(hasDiagnostic===false?['Обзор','Диагностика','Устройства','Прошивка','Уведомления']:['Обзор','Диагностика','Профориентация','Услуги и запись','Мой план','Учебный отчёт','Устройства','Прошивка','Live EEG','Аналитика','Отчёты','Мотивация','Достижения','Уведомления']).includes(name as string)):currentUser?.role==='PARENT'?sideNav.filter(([,name])=>['Обзор','Диагностика','Профориентация','Услуги и запись','Мой план','Учебный отчёт','Аналитика','Отчёты','Уведомления'].includes(name as string)):sideNav.filter(([,name])=>!['Устройства','Live EEG','Мотивация','Достижения'].includes(name as string));
+  const visiblePages=currentUser?.role==='STUDENT'
+    ?(hasDiagnostic===false
+      ?['Обзор','Диагностика','Устройства']
+      :['Обзор','Диагностика','Мой план','Учебный отчёт','Устройства','Live EEG'])
+    :currentUser?.role==='PARENT'
+      ?['Обзор','Мой план','Учебный отчёт','Услуги и запись']
+      :['Обзор','Классы','Ученики','Прогресс','Отчёты'];
+  const roleNav=sideNav.filter(([,name])=>visiblePages.includes(name as string));
   return <div className="app-shell"><aside className={'app-side '+(mobile?'shown':'')}><div className="side-logo"><Logo/><button onClick={()=>setMobile(false)}><X/></button></div><div className="workspace"><div className="school-icon">{orgName[0]}</div><span><b>{orgName}</b><small>{roleLabel} · аккаунт</small></span><ChevronDown/></div><nav>{roleNav.map(([Icon,name]:any)=><button className={active===name?'active':''} onClick={()=>{setActive(name);setMobile(false)}} key={name}><Icon/>{name}{name==='Live EEG'&&<i/>}</button>)}</nav><div className="side-bottom"><button onClick={()=>setActive('Настройки')}><Settings/>Настройки</button><button title="Центр поддержки"><CircleHelp/>Помощь</button><div className="profile"><div className="avatar av1">{initials}</div><span><b>{fullName}</b><small>{roleLabel}</small></span><button title="Выйти" onClick={async()=>{await authApi.logout();back()}}><MoreHorizontal/></button></div></div></aside><div className="app-content"><header className="app-header"><button className="mobile-menu" onClick={()=>setMobile(true)}><Menu/></button><div className="crumb">{orgName} <ChevronRight/> <b>{active}</b></div><div className="app-actions"><label><Search/><input placeholder="Поиск..."/><kbd>⌘ K</kbd></label><button title="Уведомления"><Bell/></button><div className="avatar av1">{initials}</div></div></header><main className="dashboard">{loadError&&<div className="api-error">{loadError}</div>}{active==='Обзор'?<RoleOverview user={currentUser} setActive={setActive}/>:<PlatformPage page={active}/>}</main></div></div>
 }
 
-function App(){const [screen,setScreen]=useState<Screen>('boot');useEffect(()=>{authApi.me().then(()=>setScreen('dashboard')).catch(()=>setScreen('landing'))},[]);useEffect(()=>{window.scrollTo(0,0)},[screen]);if(screen==='boot')return <div className="app-boot" role="status"><Logo/><span className="loader dark-loader"/><small>Восстанавливаем сессию…</small></div>;if(screen==='landing')return <Landing openDashboard={()=>setScreen('auth')}/>;if(screen==='auth')return <Auth onSuccess={()=>setScreen('dashboard')} onBack={()=>setScreen('landing')}/>;return <Dashboard back={()=>setScreen('landing')}/>}
+function App(){const [screen,setScreen]=useState<Screen>('boot');useEffect(()=>{authApi.me().then(()=>setScreen('dashboard')).catch(()=>setScreen('landing'))},[]);useEffect(()=>{window.scrollTo(0,0)},[screen]);if(screen==='boot')return <div className="app-boot" role="status"><Logo/><span className="loader dark-loader"/><small>Восстанавливаем сессию…</small></div>;if(screen==='landing')return <Landing openDashboard={()=>setScreen('auth')} openGuestDiagnostic={()=>setScreen('guest-diagnostic')}/>;if(screen==='guest-diagnostic')return <GuestDiagnostic onBack={()=>setScreen('landing')} onRegister={()=>setScreen('auth')}/>;if(screen==='auth')return <Auth onSuccess={()=>setScreen('dashboard')} onBack={()=>setScreen('landing')}/>;return <Dashboard back={()=>setScreen('landing')}/>}
 
 const rootElement=document.getElementById('root')!;
 const appRoot=(window as any).__iuiReactRoot||createRoot(rootElement);

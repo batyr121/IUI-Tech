@@ -236,6 +236,20 @@ app.patch('/api/students/:id',auth,requireTeacher,asyncRoute(async(req,res)=>{co
 
 app.get('/api/invites',auth,requireTeacher,asyncRoute(async(req,res)=>{const invites=await prisma.invite.findMany({where:{organizationId:req.user!.organizationId,usedAt:null,expiresAt:{gt:new Date()}},orderBy:{createdAt:'desc'}});return res.json({invites})}));
 
+app.get('/api/public/diagnostics/questions',asyncRoute(async(req,res)=>{
+  const input=z.object({grade:z.coerce.number().int().min(1).max(11),language:z.enum(['ru','kk'])}).parse(req.query);
+  const seed=Date.now(),bank=diagnosticQuestions(input.grade,input.language,seed),questions=bank.map(({correct,explanation,...item})=>item);
+  return res.json({assessmentId:String(seed),questions,anonymous:true,stored:false});
+}));
+
+app.post('/api/public/diagnostics/score',asyncRoute(async(req,res)=>{
+  const input=z.object({grade:z.number().int().min(1).max(11),language:z.enum(['ru','kk']),assessmentId:z.string().regex(/^\d+$/),answers:z.record(z.string(),z.number().int().min(0).max(3)),responses:z.array(z.object({questionId:z.string(),answer:z.number().int().min(0).max(3),responseTimeMs:z.number().int().min(0).max(3_600_000),changes:z.number().int().min(0).max(100),timeout:z.boolean(),startedAt:z.string(),answeredAt:z.string().optional()})).max(30)}).parse(req.body);
+  const questions=diagnosticQuestions(input.grade,input.language,Number(input.assessmentId)),ids=new Set(questions.map(item=>item.id));
+  if(Object.keys(input.answers).length!==questions.length||Object.keys(input.answers).some(id=>!ids.has(id)))return res.status(400).json({error:'Ответьте на все вопросы диагностики'});
+  const result=scoreAdaptiveDiagnostic(questions,input.answers,input.responses);
+  return res.json({result:{...result,grade:input.grade,language:input.language,completedAt:new Date().toISOString()},anonymous:true,stored:false});
+}));
+
 app.get('/api/diagnostics/questions',auth,requireStudent,asyncRoute(async(req,res)=>{
   const input=z.object({grade:z.coerce.number().int().min(1).max(11),language:z.enum(['ru','kk'])}).parse(req.query);
   const profile=await prisma.student.findUnique({where:{userId:req.user!.id},select:{class:{select:{name:true}}}});

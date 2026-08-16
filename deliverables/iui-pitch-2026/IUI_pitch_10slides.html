@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>IUI Technology — Pitch Deck</title>
+<style>
+@page{size:13.333in 7.5in;margin:0}*{box-sizing:border-box}html,body{margin:0;background:#e9ebf2;color:#12192b;font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}.deck{display:flex;flex-direction:column;gap:24px;padding:24px}.s{position:relative;width:13.333in;height:7.5in;padding:.53in .66in;overflow:hidden;background:#fff;page-break-after:always}.s:last-child{page-break-after:auto}.orb{position:absolute;border-radius:50%;filter:blur(20px)}.orange{width:5in;height:2.2in;right:-1in;top:-.8in;background:radial-gradient(ellipse,#ff984e85,#e89acd61 44%,transparent 72%)}.blue{width:4.6in;height:2.2in;left:3.5in;bottom:-1.3in;background:radial-gradient(ellipse,#735ee65e,#4eb6da43 46%,transparent 73%)}.top,.content,.foot{position:relative;z-index:2}.top{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:850}.brand img{width:32px;height:32px}.brand b{color:#6255d1}.num{font-size:8px;color:#939baa;letter-spacing:.15em}.foot{position:absolute;left:.66in;right:.66in;bottom:.28in;display:flex;justify-content:space-between;color:#969eac;font-size:7.5px}.tag{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid #ddd8fa;border-radius:99px;background:#f8f6ff;color:#6559d0;font-size:7.5px;font-weight:850;letter-spacing:.12em}.tag:before{content:"";width:6px;height:6px;border-radius:50%;background:#6d60d9}.title{margin:.2in 0 .1in;font-size:39px;line-height:1.04;letter-spacing:-.055em}.grad{background:linear-gradient(95deg,#5a4ec8,#8362dc 52%,#36a4d4);-webkit-background-clip:text;color:transparent}.lead{max-width:7.6in;margin:0;color:#6e7889;font-size:13px;line-height:1.55}.glass{border:1px solid #e1e4eb;border-radius:22px;background:#ffffffd7;box-shadow:0 18px 55px #35446610}.cover{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;height:5.85in}.cover h1{margin:13px 0 5px;font-size:92px;line-height:.9;letter-spacing:-.085em}.cover h2{margin:12px 0;font-family:"Bradley Hand","Segoe Print",cursive;font-size:27px;font-weight:500;line-height:1.2}.cover p{max-width:6.3in;color:#687385;font-size:13px;line-height:1.6}.chips{display:flex;gap:8px;margin-top:17px}.chips span{padding:7px 10px;border:1px solid #e1e4eb;border-radius:9px;background:#fff;font-size:8px}.brain{position:relative;width:3.45in;height:3.45in;margin:auto;display:grid;place-items:center;border:1px solid #ddd8fa;border-radius:1in;background:radial-gradient(circle,#fff 25%,#efebff 61%,#e6f4fb);box-shadow:0 35px 90px #5147b52a}.brain:before,.brain:after{content:"";position:absolute;border:1px solid #7568dd2a;border-radius:50%}.brain:before{inset:-.25in}.brain:after{inset:-.5in}.brain img{width:1.4in}.statement{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;height:5.8in}.statement h1{margin:0;font-size:64px;line-height:.98;letter-spacing:-.065em}.statement h1 span{display:block;font-size:98px}.statement p{max-width:5.7in;margin-top:23px;color:#6e788a;font-size:14px;line-height:1.55}.manifesto{padding:.33in;background:linear-gradient(145deg,#171b2d,#302c5a);color:#fff;border:0}.manifesto small{color:#bdb7ef;font-size:8px;letter-spacing:.11em}.manifesto h3{margin:10px 0;font-size:23px}.manifesto p{color:#d9d6ea;font-size:10px;line-height:1.6}.manifesto strong{display:block;margin-top:26px;color:#fff;font-size:14px}.problem{display:grid;grid-template-columns:.82fr 1.18fr;gap:.22in;margin-top:.26in}.big{padding:.3in;background:linear-gradient(145deg,#5b4fc7,#7761d9);color:#fff;border:0}.big strong{font-size:58px}.big h3{margin:8px 0;font-size:18px}.big p{color:#e7e3fb;font-size:9.5px;line-height:1.55}.list{display:flex;flex-direction:column;gap:.1in}.row{display:flex;gap:11px;padding:.16in;border:1px solid #e3e6ed;border-radius:16px;background:#fff}.row i{width:31px;height:31px;display:grid;place-items:center;flex:none;border-radius:10px;background:#efedff;color:#6558d0;font-style:normal;font-weight:850}.row b{font-size:10px}.row small{display:block;margin-top:3px;color:#818b9a;font-size:8px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:.12in;margin-top:.27in}.step{padding:.18in;border:1px solid #e2e5ec;border-radius:18px;background:#fff}.step em{font-style:normal;color:#6659d2;font-size:7px;font-weight:850}.step i{width:34px;height:34px;display:grid;place-items:center;margin-top:12px;border-radius:11px;background:#eeebff;color:#6658d2;font-style:normal;font-size:9px;font-weight:850}.step h3{margin:11px 0 6px;font-size:12px}.step p{margin:0;color:#768091;font-size:7.8px;line-height:1.45}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:.14in}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.16in}.features{margin-top:.24in}.card{padding:.21in}.icon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:#eeebff;color:#6558d2;font-size:10px;font-weight:850}.card h3{margin:10px 0 6px;font-size:14px}.card p{margin:0;color:#748092;font-size:8.5px;line-height:1.5}.card ul{list-style:none;margin:9px 0 0;padding:0}.card li{margin-top:6px;color:#657082;font-size:8px}.card li:before{content:"";display:inline-block;width:5px;height:5px;margin:0 7px 1px 0;border-radius:50%;background:#2d9972}.audience{margin-top:.25in}.audience .card{min-height:2.35in}.audience-label{color:#6659d2;font-size:8px;font-weight:850;letter-spacing:.1em}.audience h3{font-size:20px}.audience strong{display:block;margin-top:13px;font-size:28px;letter-spacing:-.04em}.audience strong small{font-size:9px;color:#7e8796;font-weight:500}.compare{width:100%;margin-top:.25in;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid #e1e4eb;border-radius:20px;background:#fff;font-size:8.5px}.compare th,.compare td{padding:11px 12px;border-bottom:1px solid #eceef2;text-align:center}.compare th:first-child,.compare td:first-child{text-align:left}.compare th{background:#f6f7fa;color:#7e8796;font-size:7.5px}.compare th.iui{background:#6659d2;color:#fff}.compare tr:last-child td{border-bottom:0}.yes{color:#278f69;font-weight:850}.partial{color:#bd7a28;font-weight:850}.no{color:#a2a8b2}.market-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:.22in;margin-top:.25in}.market-big{padding:.3in;background:linear-gradient(145deg,#171b2d,#302c5a);color:#fff;border:0}.market-big strong{display:block;font-size:55px;letter-spacing:-.07em}.market-big b{font-size:14px}.market-big p{color:#d9d7e8;font-size:8.7px;line-height:1.5}.market-stats{display:grid;grid-template-columns:1fr 1fr;gap:.12in}.stat{padding:.2in;border:1px solid #e2e5ec;border-radius:18px;background:#fff}.stat small{color:#858e9c;font-size:7.5px}.stat strong{display:block;margin:6px 0;font-size:27px}.stat p{margin:0;color:#778292;font-size:7.8px;line-height:1.4}.formula{margin-top:.14in;padding:.15in;border:1px solid #ded9fa;border-radius:15px;background:#f8f6ff;color:#6154c8;font-size:9px;text-align:center;font-weight:800}.dark{background:#201d20;color:#fff}.dark .brand span{color:#fff}.dark .brand b{color:#58aaf4}.dark .num,.dark .foot{color:#aaa4aa}.dark .tag{border-color:#464046;background:#2c282c;color:#bcb6bc}.biz{display:grid;grid-template-columns:.28fr .72fr;gap:.18in;margin-top:.21in}.biz-title h2{margin:0;font-size:43px;line-height:.98;font-weight:450;letter-spacing:-.055em}.biz-title p{margin-top:26px;color:#aaa5aa;font-size:9px;line-height:1.55}.ecosystem{position:relative;height:4.85in}.core{position:absolute;left:41%;top:36%;width:1.65in;height:1.65in;display:grid;place-items:center;border-radius:50%;background:#157df5;box-shadow:0 0 0 12px #157df51f;color:#fff;text-align:center;font-weight:850;font-size:12px}.node{position:absolute;width:2.25in;min-height:.9in;padding:.14in;border-radius:18px;background:#f7f7f8;color:#1d1b1d;text-align:center}.node b{display:block;font-size:10px}.node small{display:block;margin-top:4px;color:#706b70;font-size:7px}.n1{left:4%;top:4%}.n2{left:2%;top:39%}.n3{left:9%;bottom:1%}.n4{right:3%;top:4%}.n5{right:0;top:39%}.n6{right:8%;bottom:1%}.line{position:absolute;height:2px;background:#1884f5;transform-origin:left center}.line:after{content:"";position:absolute;right:-1px;top:-3px;width:7px;height:7px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}.l1{left:26%;top:25%;width:1.55in;transform:rotate(20deg);color:#1884f5}.l2{left:25%;top:51%;width:1.45in;color:#1884f5}.l3{left:29%;top:78%;width:1.25in;transform:rotate(-25deg);color:#1884f5}.l4{left:55%;top:25%;width:1.45in;transform:rotate(-20deg);background:#52bd58;color:#52bd58}.l5{left:56%;top:51%;width:1.45in;background:#52bd58;color:#52bd58}.l6{left:55%;top:73%;width:1.35in;transform:rotate(22deg);background:#52bd58;color:#52bd58}.flow-label{position:absolute;font-size:7px;font-weight:850}.users{left:31%;top:32%;color:#3092f3}.revenue{right:27%;top:32%;color:#59c25b}.traction{display:grid;grid-template-columns:.9fr 1.1fr;gap:.2in;margin-top:.24in}.orda{padding:.3in;background:linear-gradient(145deg,#171b2d,#302c5a);color:#fff;border:0}.orda small{color:#bcb6ef;font-size:8px;letter-spacing:.1em}.orda h3{margin:9px 0;font-size:22px}.orda p{color:#d8d5e8;font-size:9px;line-height:1.55}.milestones{display:grid;grid-template-columns:1fr 1fr;gap:.1in}.mile{padding:.16in;border:1px solid #e2e5ec;border-radius:16px;background:#fff}.mile i{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:#e9f7f1;color:#278e69;font-style:normal;font-size:7px;font-weight:850}.mile h3{margin:9px 0 4px;font-size:10px}.mile p{margin:0;color:#798393;font-size:7.5px;line-height:1.4}.close{margin-top:.13in;padding:.16in;border-radius:15px;background:linear-gradient(135deg,#5c4fc8,#7861db);color:#fff}.close b{font-size:11px}.close p{margin:4px 0 0;color:#e6e2fb;font-size:8px}@media print{body{background:#fff}.deck{display:block;padding:0}.s{margin:0}}
+.brain{width:3.2in;height:3.2in;border:0;border-radius:50%;background:radial-gradient(circle,#f7f5ff 0,#eef6ff 46%,transparent 70%);box-shadow:none}.brain:before{inset:.12in}.brain:after{inset:-.18in}.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.14in;margin-top:.23in}.comp-card{padding:.2in;min-height:1.28in}.comp-card small{color:#8a93a2;font-size:7px;font-weight:800;letter-spacing:.08em}.comp-card h3{margin:8px 0 5px;font-size:13px}.comp-card p{margin:0;color:#748092;font-size:8px;line-height:1.45}.iui-edge{grid-column:1/-1;display:grid;grid-template-columns:.65fr 1.35fr;align-items:center;padding:.2in .25in;border:0;background:linear-gradient(135deg,#5b4fc8,#725ed8);color:#fff}.iui-edge h3{margin:0;font-size:20px}.iui-edge p{margin:0;color:#e9e6fb;font-size:9px;line-height:1.5}.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.15in;margin-top:.25in}.model-card{padding:.22in;min-height:2.08in}.model-card .label{font-size:7px;font-weight:850;color:#6659d2;letter-spacing:.1em}.model-card h3{margin:10px 0 5px;font-size:16px}.model-card p{margin:0;color:#748092;font-size:8.3px;line-height:1.5}.price{display:block;margin:18px 0 4px;font-size:28px;letter-spacing:-.05em}.price small{font-size:8px;color:#7f8998;font-weight:600;letter-spacing:0}.model-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:.16in;overflow:hidden;border:1px solid #e3e5ed;border-radius:17px;background:#e3e5ed}.model-strip div{padding:.14in .18in;background:#f8f7ff}.model-strip b{display:block;font-size:9px}.model-strip small{color:#7d8695;font-size:7.5px}.model-note{margin-top:.13in;color:#7b8493;font-size:8px;text-align:center}@media print{body{background:#fff}.deck{display:block;padding:0}.s{margin:0}}
+.brand img,.brain img{content:url("../../public/brand/iui-brain-charge-v4.svg")}.brand img{width:32px;height:32px}.brain img{width:1.55in;height:1.55in}
+/* PDF-safe rendering: no alpha shadows, blur layers or translucent card fills. */
+.orb{filter:none!important;opacity:1!important}.orange{background:radial-gradient(ellipse,#ffe7de 0,#f8e5f0 38%,#fff 72%)!important}.blue{background:radial-gradient(ellipse,#e8e5ff 0,#e9f6fb 42%,#fff 73%)!important}.glass,.card,.step,.row,.stat,.mile,.comp-card,.model-card{background:#fff!important;box-shadow:none!important;filter:none!important}.manifesto,.market-big,.orda{background:#22213f!important;box-shadow:none!important}.big,.iui-edge,.close{background:#6758d5!important;box-shadow:none!important}.brain{background:#f5f5ff!important;box-shadow:none!important;filter:none!important}.s *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.photo-split{display:grid;grid-template-columns:1.12fr .88fr;gap:.28in;align-items:stretch;margin-top:.22in}.photo-split.reverse{grid-template-columns:.88fr 1.12fr}.photo-frame{min-height:3.75in;overflow:hidden;border-radius:24px;border:1px solid #e2e5ee;background:#f5f6fa}.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}.simple-points{display:flex;flex-direction:column;justify-content:center;gap:.13in}.simple-point{padding:.17in 0;border-bottom:1px solid #e5e7ed}.simple-point:last-child{border-bottom:0}.simple-point small{color:#6859d6;font-size:7px;font-weight:850;letter-spacing:.1em}.simple-point h3{margin:5px 0;font-size:17px}.simple-point p{margin:0;color:#778191;font-size:9px;line-height:1.45}.contact-slide{padding:0;background:#fff}.contact-photo{height:3.18in;overflow:hidden}.contact-photo img{width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block}.contact-logo{position:absolute;left:.55in;top:.42in;z-index:3;display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:99px;background:#fff;color:#171a25;font-size:10px;font-weight:850}.contact-logo img{width:28px;height:28px}.contact-body{position:relative;height:4.32in;padding:.44in .72in .3in}.contact-pill{position:absolute;top:-.2in;left:.72in;padding:10px 16px;border-radius:99px;background:#6857e5;color:#fff;font-size:10px;font-weight:850;letter-spacing:.06em}.contact-grid{display:grid;grid-template-columns:1fr 1.75in;gap:.35in;align-items:center}.contact-grid h1{margin:.13in 0 .06in;font-size:43px;line-height:1.04;letter-spacing:-.055em}.contact-script{margin:0;color:#6857e5;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;font-size:27px;font-style:italic;font-weight:650}.contact-qr img{width:1.65in;height:1.65in;display:block}.contact-qr small{display:block;margin-top:5px;color:#6857e5;font-size:8px;text-align:center;font-weight:800}.contact-info{position:absolute;left:.72in;right:.72in;bottom:.3in;display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:.3in}.contact-info small{display:block;color:#9299a5;font-size:7px}.contact-info b{display:block;margin-top:5px;font-size:10px}
+.teacher-objection h1{margin:15px 0 17px;font-size:48px;line-height:1.04;letter-spacing:-.055em;text-transform:none}.teacher-objection h1 span{display:inline;font-size:inherit}.teacher-objection>p{max-width:5.25in;margin:0;color:#6e788a;font-size:12px;line-height:1.55}.teacher-objection .quote-mark{color:#6857e5}
+/* Slightly larger supporting typography while preserving the visual hierarchy. */
+.num{font-size:10px}.foot{font-size:9px}.tag{font-size:9px}.lead{font-size:15px}.cover p{font-size:15px}.chips span{font-size:10px}.statement p{font-size:15px}.manifesto small{font-size:10px}.manifesto p{font-size:12px}.manifesto strong{font-size:16px}.big p{font-size:12px}.row b{font-size:12px}.row small{font-size:10px}.step em{font-size:9px}.step p{font-size:10px}.card p{font-size:10.5px}.card li{font-size:10px}.audience-label{font-size:10px}.audience strong small{font-size:10px}.market-big p{font-size:10.5px}.stat small{font-size:9px}.stat p{font-size:10px}.formula{font-size:10.5px}.orda small{font-size:10px}.orda p{font-size:11px}.mile p{font-size:9px}.comp-card small{font-size:9px}.comp-card p{font-size:10px}.iui-edge p{font-size:11px}.model-card .label{font-size:9px}.model-card p{font-size:10px}.price small{font-size:10px}.model-strip b{font-size:11px}.model-strip small{font-size:9px}.model-note{font-size:9.5px}.simple-point small{font-size:9px}.simple-point p{font-size:11px}.teacher-objection>p{font-size:14px}.contact-logo{font-size:12px}.contact-pill{font-size:12px}.contact-qr small{font-size:9px}.contact-info small{font-size:9px}.contact-info b{font-size:12px}
+.cover h2{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;font-style:italic;font-weight:600}
+</style>
+</head>
+<body>
+<main class="deck">
+
+<section class="s" data-document-role="page">
+<div class="orb orange">
+</div>
+<div class="orb blue">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">PITCH DECK · 01 / 11</div>
+</header>
+<div class="content cover">
+<div>
+<div class="tag">AI + NEUROTECH · 2026</div>
+<h1>IUI</h1>
+<h2>AI-powered neuro-adaptive learning platform</h2>
+<p>Диагностика знаний, когнитивных навыков и внимания превращается в персональный маршрут развития ребёнка.</p>
+<div class="chips">
+<span>Anonymous first test</span>
+<span>IUI NeuroBand</span>
+<span>AI learning route</span>
+</div>
+</div>
+<div class="brain">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+</div>
+</div>
+<footer class="foot">
+<span>Intelligent User Interface</span>
+<span>Участник Startup Orda</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb orange">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">02 / 11</div>
+</header>
+<div class="content statement">
+<div class="teacher-objection">
+<div class="tag">ГЛАВНОЕ ВОЗРАЖЕНИЕ</div>
+<h1><span class="quote-mark">«</span>Я и так понимаю ребёнка, просто глядя на него<span class="quote-mark">»</span></h1>
+<p>Опытный учитель замечает настроение и поведение. Но взгляд не показывает причину ошибки и динамику внимания каждого ученика.</p>
+</div>
+<div class="glass manifesto">
+<small>ОТВЕТ IUI</small>
+<h3>Взгляд видит момент.<br>IUI показывает закономерность.</h3>
+<p>Мы не заменяем учителя. Мы даём объективные данные: где ребёнку трудно, при какой нагрузке снижается внимание и какой следующий шаг стоит проверить.</p>
+<strong>Интуиция + данные</strong>
+</div>
+</div>
+<footer class="foot">
+<span>IUI Technology</span>
+<span>02 · Teacher insight</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb blue">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">03 / 11</div>
+</header>
+<div class="content">
+<div class="tag">ПРОБЛЕМА</div>
+<h2 class="title">Оценка показывает итог.<br>
+<span class="grad">Но не объясняет причину.</span>
+</h2>
+<p class="lead">Одинаковая ошибка может означать пробел в знаниях, потерю внимания, перегрузку рабочей памяти или слишком высокий темп.</p>
+<div class="problem">
+<div class="glass big">
+<strong>?</strong>
+<h3>Родитель и учитель остаются без ответа</h3>
+<p>Что именно не получается? Почему? Как тренировать? Когда повторно проверить? Обычный тест заканчивается баллом.</p>
+</div>
+<div class="list">
+<div class="row">
+<i>1</i>
+<span>
+<b>Нет картины процесса</b>
+<small>Мы видим правильность, но не устойчивость и стратегию решения.</small>
+</span>
+</div>
+<div class="row">
+<i>2</i>
+<span>
+<b>Общие рекомендации</b>
+<small>Одинаковые задания выдаются детям с разными причинами ошибок.</small>
+</span>
+</div>
+<div class="row">
+<i>3</i>
+<span>
+<b>Нет замкнутого цикла</b>
+<small>После отчёта редко появляется недельная практика и повторная точка.</small>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>Problem</span>
+<span>03 · Score is not an explanation</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb orange">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">04 / 11</div>
+</header>
+<div class="content">
+<div class="tag">ОСНОВНАЯ ЗАДАЧА ПРОДУКТА</div>
+<h2 class="title">Не просто увидеть ошибку.<br>
+<span class="grad">Понять причину затруднения.</span>
+</h2>
+<div class="photo-split">
+<div class="simple-points">
+<div class="simple-point"><small>01 · ЗНАНИЯ</small><h3>Что ребёнок знает?</h3><p>Темы, типы ошибок и устойчивость результата.</p></div>
+<div class="simple-point"><small>02 · ПРОЦЕСС</small><h3>Как он решает?</h3><p>Время ответа, память, внимание и реакция на нагрузку.</p></div>
+<div class="simple-point"><small>03 · ДЕЙСТВИЕ</small><h3>Что делать дальше?</h3><p>Вероятная учебная причина и конкретный следующий шаг.</p></div>
+</div>
+<div class="photo-frame"><img src="../iui-instagram/assets/student.png" alt="Ученик проходит нейродиагностику"></div>
+</div>
+</div>
+<footer class="foot">
+<span>From score to learning cause</span>
+<span>04 · Core task</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb blue">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">05 / 11</div>
+</header>
+<div class="content">
+<div class="tag">КОНЕЧНЫЙ ПРОДУКТ</div>
+<h2 class="title">Мы производим не EEG-график.<br>
+<span class="grad">Мы производим маршрут развития.</span>
+</h2>
+<div class="problem">
+<div class="glass big">
+<strong>3</strong>
+<h3>ответа после каждой диагностики</h3>
+<p>Почему ребёнку трудно? Что делать на этой неделе? Помогла ли выбранная стратегия?</p>
+</div>
+<div class="list">
+<div class="row"><i>PDF</i><div><b>Персональный отчёт на 10–15 страниц</b><small>Знания, когнитивный профиль, нейроконтекст, сильные стороны и точки роста.</small></div></div>
+<div class="row"><i>7D</i><div><b>Недельный маршрут микро-заданий</b><small>Короткая практика по учебным пробелам, вниманию, памяти и концентрации.</small></div></div>
+<div class="row"><i>RE</i><div><b>Повторное измерение и адаптация</b><small>Система показывает динамику ребёнка и обновляет следующий цикл.</small></div></div>
+</div>
+</div>
+<div class="formula">ДИАГНОСТИКА → ОБЪЯСНЕНИЕ → ПРАКТИКА → ПОВТОРНОЕ ИЗМЕРЕНИЕ</div>
+</div>
+<footer class="foot">
+<span>A closed learning feedback loop</span>
+<span>05 · Product</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb orange">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">06 / 11</div>
+</header>
+<div class="content">
+<div class="tag">СЕГМЕНТ ПОКУПАТЕЛЕЙ</div>
+<h2 class="title">Два покупателя.<br>
+<span class="grad">Одна система данных.</span>
+</h2>
+<div class="photo-split reverse">
+<div class="photo-frame"><img src="../iui-instagram/assets/parent.png" alt="Родитель получает результат IUI"></div>
+<div class="simple-points">
+<div class="simple-point"><small>B2C · РОДИТЕЛИ</small><h3>Понять ребёнка и знать следующий шаг</h3><p>Диагностика, понятный отчёт и персональная практика на неделю.</p></div>
+<div class="simple-point"><small>B2B · ШКОЛЫ И ЦЕНТРЫ</small><h3>Измеримый сервис и сильное отличие школы</h3><p>Устройства, кабинет классов, отчёты семьям и аналитика преподавателю.</p></div>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>B2C + B2B</span>
+<span>06 · Customer segments</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb blue">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">07 / 11</div>
+</header>
+<div class="content">
+<div class="tag">КОНКУРЕНТЫ</div>
+<h2 class="title">Сегодня родителю нужны<br>
+<span class="grad">сразу несколько решений</span>
+</h2>
+<p class="lead">Рынок решает отдельные части задачи. IUI собирает их в один непрерывный цикл развития ребёнка.</p>
+<div class="comp-grid">
+<div class="glass comp-card"><small>ОНЛАЙН-ТЕСТЫ</small><h3>Показывают балл</h3><p>Определяют правильные ответы, но не объясняют причину ошибки.</p></div>
+<div class="glass comp-card"><small>ОБУЧАЮЩИЕ ПРИЛОЖЕНИЯ</small><h3>Дают практику</h3><p>Поддерживают регулярность, но редко учитывают когнитивный контекст.</p></div>
+<div class="glass comp-card"><small>EEG-РЕШЕНИЯ</small><h3>Показывают сигнал</h3><p>Визуализируют состояние, но не превращают данные в учебный маршрут.</p></div>
+<div class="glass iui-edge">
+<h3>IUI Technology</h3>
+<p><b>Диагностирует знания и способ решения → объясняет вероятную причину → назначает практику → повторно измеряет результат.</b><br>Один продукт для семьи, ребёнка и школы.</p>
+</div>
+</div>
+<footer class="foot">
+<span>Fragmented market → integrated feedback loop</span>
+<span>07 · Competition</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb orange">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">08 / 11</div>
+</header>
+<div class="content">
+<div class="tag">РЫНОК КАЗАХСТАНА</div>
+<h2 class="title">Большая база пользователей.<br>
+<span class="grad">Точный стартовый сегмент.</span>
+</h2>
+<div class="market-grid">
+<div class="glass market-big">
+<strong>4,1 млн+</strong>
+<b>школьников</b>
+<p>Более 8 тысяч школ начали 2025–2026 учебный год. Это верхняя граница пользовательской базы, а не прогноз выручки IUI.</p>
+</div>
+<div class="market-stats">
+<div class="stat">
+<small>TAM · ВСЕ ШКОЛЬНИКИ</small>
+<strong>4,1 млн+</strong>
+<p>Потенциальная аудитория образовательной диагностики.</p>
+</div>
+<div class="stat">
+<small>ИНФРАСТРУКТУРА</small>
+<strong>8 000+</strong>
+<p>школ по Казахстану в 2025–2026 учебном году.</p>
+</div>
+<div class="stat">
+<small>SAM · ПЕРВЫЙ ФОКУС</small>
+<strong>B2C + private</strong>
+<p>Семьи, частные школы и центры в крупных городах.</p>
+</div>
+<div class="stat">
+<small>SOM · ПЕРВЫЙ ЭТАП</small>
+<strong>Актау</strong>
+<p>Полевые сессии, партнёрские школы и локальные продажи.</p>
+</div>
+</div>
+</div>
+<div class="formula">Иллюстративный B2B-сценарий: 100 школ × 10 устройств × 5 000 ₸ × 12 месяцев = 60 млн ₸ годового оборота</div>
+<p style="margin-top:9px;color:#9199a6;font-size:7px">Источник базовых данных: Министерство просвещения РК, 2025–2026. Сценарий — расчёт модели, не прогноз и не подтверждённая выручка.</p>
+</div>
+<footer class="foot">
+<span>Kazakhstan EdTech market</span>
+<span>08 · Market</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb orange"></div>
+<div class="orb blue"></div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-brain-charge-v4.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">09 / 11</div>
+</header>
+<div class="content">
+<div class="tag">БИЗНЕС-МОДЕЛЬ</div>
+<h2 class="title">Доступный вход.<br><span class="grad">Повторная ценность и B2B-выручка.</span></h2>
+<div class="model-grid">
+<div class="glass model-card">
+<span class="label">B2C · СЕМЬЯ</span>
+<h3>Диагностика ребёнка</h3>
+<p>Отчёт, точки роста и персональные рекомендации после измерения.</p>
+<strong class="price">1 290 ₸ <small>/ сессия</small></strong>
+<p>Точка входа — бесплатная пробная диагностика.</p>
+</div>
+<div class="glass model-card">
+<span class="label">B2B · ШКОЛА</span>
+<h3>Устройство или аренда</h3>
+<p>Школа получает NeuroBand, платформу, классы и отчётность.</p>
+<strong class="price">50 000 ₸ <small>/ устройство</small></strong>
+<p>Продажа от 2 устройств или аренда от 10 устройств.</p>
+</div>
+<div class="glass model-card">
+<span class="label">RECURRING · B2B</span>
+<h3>Регулярный сервис</h3>
+<p>Аренда, актуальные обновления и техническая поддержка.</p>
+<strong class="price">5 000 ₸ <small>/ устройство / месяц</small></strong>
+<p>Поддержка при покупке — 2 000 ₸ в месяц.</p>
+</div>
+</div>
+<div class="model-strip">
+<div><b>Привлечение</b><small>Пробные сессии и партнёрские школы</small></div>
+<div><b>Первая выручка</b><small>Диагностика или поставка NeuroBand</small></div>
+<div><b>Удержание</b><small>Повторные срезы, планы и сервис</small></div>
+</div>
+<p class="model-note">Модель проверяется на B2C-клиентах и B2B-пилотах; цены представлены как текущие гипотезы.</p>
+</div>
+<footer class="foot">
+<span>B2C acquisition + B2B recurring revenue</span>
+<span>09 · Business model</span>
+</footer>
+</section>
+
+<section class="s" data-document-role="page">
+<div class="orb blue">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">
+<span>IUI <b>TECHNOLOGY</b>
+</span>
+</div>
+<div class="num">10 / 11</div>
+</header>
+<div class="content">
+<div class="tag">ТРЕКШН</div>
+<h2 class="title">Первые продажи.<br>
+<span class="grad">Первая B2B-интеграция.</span>
+</h2>
+<div class="traction">
+<div class="glass orda">
+<small>STARTUP ECOSYSTEM</small>
+<h3>Startup Orda<br>+ SBER500</h3>
+<p>IUI развивается внутри стартап-экосистемы, проверяет бизнес-модель и готовится к масштабированию.</p>
+</div>
+<div class="milestones">
+<div class="mile">
+<i>OK</i>
+<h3>5 B2C-клиентов</h3>
+<p>Купили подписку по 5 000 ₸.</p>
+</div>
+<div class="mile">
+<i>OK</i>
+<h3>25 000 ₸ выручки</h3>
+<p>Первая подтверждённая B2C-монетизация.</p>
+</div>
+<div class="mile">
+<i>OK</i>
+<h3>«Жайсан Бала»</h3>
+<p>Подтверждённая B2B-интеграция.</p>
+</div>
+<div class="mile">
+<i>OK</i>
+<h3>10 устройств</h3>
+<p>Интеграция IUI NeuroBand в «Жайсан Бала».</p>
+</div>
+</div>
+</div>
+<div class="formula">СЛЕДУЮЩИЙ ЭТАП: ПОВТОРНЫЕ B2C-ПРОДАЖИ · ЗАПУСК 10 УСТРОЙСТВ · МАСШТАБИРОВАНИЕ B2B</div>
+</div>
+<footer class="foot">
+<span>Measure. Understand. Adapt.</span>
+<span>10 · Traction</span>
+</footer>
+</section>
+
+<section class="s contact-slide" data-document-role="page">
+<div class="contact-logo"><img src="../../public/brand/iui-brain-charge-v4.svg"><span>IUI TECHNOLOGY</span></div>
+<div class="contact-photo"><img src="../iui-instagram/assets/teacher-story.png" alt="IUI в образовательном процессе"></div>
+<div class="contact-body">
+<div class="contact-pill">СВЯЖИТЕСЬ С НАМИ</div>
+<div class="contact-grid">
+<div>
+<h1>Вы всё ещё учите вслепую?<br>Пора включить IUI.</h1>
+<p class="contact-script">IUI changes the education</p>
+</div>
+<div class="contact-qr"><img src="iui-site-qr.png" alt="QR-код сайта IUI"><small>SCAN TO OPEN</small></div>
+</div>
+<div class="contact-info">
+<div><small>Contact</small><b>+7 778 303 4567</b></div>
+<div><small>Website</small><b>iui-platform-new.vercel.app</b></div>
+<div><small>E-mail</small><b>iui.help.department@gmail.com</b></div>
+</div>
+</div>
+</section>
+
+</main>
+</body>
+</html>

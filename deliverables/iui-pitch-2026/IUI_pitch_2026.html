@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>IUI Technology — Pitch 2026</title>
+<style>
+@page{size:13.333in 7.5in;margin:0}*{box-sizing:border-box}html,body{margin:0;background:#e9ebf2;color:#12192b;font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}.deck{display:flex;flex-direction:column;gap:24px;padding:24px}.slide{position:relative;width:13.333in;height:7.5in;padding:.53in .66in;overflow:hidden;background:#fff;page-break-after:always;break-after:page}.slide:last-child{page-break-after:auto}.glow{position:absolute;border-radius:50%;filter:blur(18px);pointer-events:none}.g1{width:5.1in;height:2.1in;right:-.8in;top:-.55in;background:radial-gradient(ellipse,#ff9b4d88 0,#ef9bd069 42%,transparent 72%);transform:rotate(-10deg)}.g2{width:4.6in;height:2.5in;left:3.7in;bottom:-1.45in;background:radial-gradient(ellipse,#6858e65c 0,#56b8dd4d 42%,transparent 73%)}.g3{width:4.4in;height:2.2in;right:-.9in;bottom:-.9in;background:radial-gradient(ellipse,#8065e660 0,#4eb8db3c 44%,transparent 74%)}.top,.content,.foot{position:relative;z-index:2}.top{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:850}.brand img{width:32px;height:32px}.brand b{color:#6255d1}.page{font-size:8px;color:#939baa;letter-spacing:.15em}.foot{position:absolute;left:.66in;right:.66in;bottom:.29in;display:flex;justify-content:space-between;color:#969eac;font-size:7.5px}.eyebrow{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid #ddd8fa;border-radius:99px;background:#f8f6ff;color:#6559d0;font-size:7.5px;font-weight:850;letter-spacing:.12em}.eyebrow:before{content:'✦'}.title{margin:.2in 0 .1in;font-size:39px;line-height:1.04;letter-spacing:-.055em}.grad{background:linear-gradient(95deg,#5b4fca,#8564dd 52%,#37a5d5);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:7.5in;margin:0;color:#6e7889;font-size:13px;line-height:1.55}.glass{border:1px solid #e1e4eb;border-radius:22px;background:#ffffffd4;box-shadow:0 18px 55px #35446610}.cover{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;height:5.85in}.cover h1{margin:12px 0 3px;font-size:94px;line-height:.9;letter-spacing:-.085em}.cover h2{margin:12px 0;font-family:"Bradley Hand","Segoe Print",cursive;font-size:27px;font-weight:500;line-height:1.25;transform:rotate(-1deg)}.cover p{max-width:6.4in;color:#687385;font-size:13px;line-height:1.6}.cover-tags{display:flex;gap:8px;margin-top:17px}.cover-tags span{padding:7px 10px;border:1px solid #e1e4eb;border-radius:9px;background:#fff;font-size:8px}.brain{position:relative;width:3.45in;height:3.45in;margin:auto;display:grid;place-items:center;border:1px solid #ddd8fa;border-radius:1in;background:radial-gradient(circle,#fff 25%,#efebff 61%,#e6f4fb);box-shadow:0 35px 90px #5147b52a;transform:rotate(2deg)}.brain:before,.brain:after{content:'';position:absolute;border:1px solid #7568dd2a;border-radius:50%}.brain:before{inset:-.25in}.brain:after{inset:-.5in}.brain img{width:1.4in}.problem{display:grid;grid-template-columns:.88fr 1.12fr;gap:.22in;margin-top:.27in}.big-question{padding:.28in;background:linear-gradient(145deg,#5c4fc8,#7560d9);color:#fff;border:0}.big-question strong{display:block;font-size:53px;letter-spacing:-.06em}.big-question h3{margin:6px 0 9px;font-size:17px}.big-question p{margin:0;color:#e5e1fb;font-size:9.5px;line-height:1.55}.questions{display:flex;flex-direction:column;gap:.1in}.question{display:flex;gap:11px;padding:.16in;border:1px solid #e3e6ed;border-radius:16px;background:#fff}.question i{width:31px;height:31px;display:grid;place-items:center;flex:none;border-radius:10px;background:#efedff;color:#6558d0;font-style:normal;font-weight:850}.question b{font-size:10px}.question small{display:block;margin-top:3px;color:#828b9a;font-size:8px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:.12in;margin-top:.28in}.step{position:relative;padding:.18in;border:1px solid #e2e5ec;border-radius:18px;background:#fff}.step:not(:last-child):after{content:'→';position:absolute;right:-.105in;top:.39in;z-index:3;width:.21in;height:.21in;display:grid;place-items:center;border:1px solid #e0e3ea;border-radius:50%;background:#fff;color:#6558d2;font-size:8px}.step em{font-style:normal;color:#6659d2;font-size:7px;font-weight:850}.step i{width:34px;height:34px;display:grid;place-items:center;margin-top:12px;border-radius:11px;background:#eeebff;color:#6658d2;font-style:normal;font-weight:850}.step h3{margin:11px 0 6px;font-size:12px}.step p{margin:0;color:#768091;font-size:7.8px;line-height:1.45}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:.14in}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.17in}.card{padding:.21in}.card-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:#eeebff;color:#6558d2;font-size:12px;font-weight:850}.card h3{margin:10px 0 6px;font-size:14px}.card p{margin:0;color:#748092;font-size:8.6px;line-height:1.5}.card ul{list-style:none;margin:9px 0 0;padding:0}.card li{margin-top:6px;color:#657082;font-size:8px}.card li:before{content:'✓';margin-right:6px;color:#29956f;font-weight:900}.feature-grid{margin-top:.25in}.feature-grid .card{min-height:1.5in}.result-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:.22in;margin-top:.25in}.result-score{padding:.3in;background:linear-gradient(145deg,#5b4ec6,#7661d9);color:#fff;border:0}.result-score small{color:#ded9f9;font-size:8px}.result-score strong{display:block;margin:8px 0;font-size:68px;letter-spacing:-.075em}.result-score h3{font-size:16px;margin:0}.result-score p{color:#e8e4fc;font-size:8.5px;line-height:1.5}.result-details{display:grid;grid-template-columns:repeat(3,1fr);gap:.11in}.metric{padding:.16in;border:1px solid #e2e5ed;border-radius:17px;background:#fff}.metric small{display:block;color:#858e9c;font-size:7.5px}.metric strong{display:block;margin:5px 0;font-size:23px}.bar{height:5px;border-radius:99px;background:#e9ebf1;overflow:hidden}.bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#7164df,#46b3d2)}.metric p{margin:7px 0 0;color:#7b8594;font-size:7.4px}.evidence{display:grid;grid-template-columns:1.05fr .95fr;gap:.22in;margin-top:.26in}.sessions{padding:.27in}.sessions h3{font-size:17px;margin:0}.sessions>p{color:#768192;font-size:8.8px}.session-row{display:flex;align-items:center;gap:10px;margin-top:10px;padding:11px;border-radius:13px;background:#f7f8fb}.session-row i{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:#e9f7f1;color:#278f69;font-style:normal;font-size:10px}.session-row span{flex:1}.session-row b{font-size:9px}.session-row small{display:block;margin-top:2px;color:#858e9c;font-size:7.5px}.session-row em{font-style:normal;color:#2d966f;font-size:7px}.loop{padding:.29in;background:linear-gradient(145deg,#f7f5ff,#fff)}.loop h3{margin:0;font-size:17px}.loop-ring{position:relative;width:2.15in;height:2.15in;margin:.22in auto 0;border:15px solid #ebe8ff;border-radius:50%;display:grid;place-items:center;text-align:center}.loop-ring:before{content:'';position:absolute;inset:-15px;border:15px solid transparent;border-top-color:#695dd7;border-right-color:#45b4d2;border-radius:50%;transform:rotate(25deg)}.loop-ring strong{font-size:24px;letter-spacing:-.04em}.loop-ring small{display:block;color:#838c9a;font-size:7px}.market{margin-top:.25in}.market .card{min-height:2.15in}.market-label{font-size:8px;color:#6659d2;font-weight:850;letter-spacing:.1em}.market h3{font-size:20px}.market strong{display:block;margin-top:13px;font-size:31px;letter-spacing:-.045em}.market strong small{font-size:9px;color:#7d8695;font-weight:500}.model{display:grid;grid-template-columns:repeat(3,1fr);gap:.14in;margin-top:.25in}.model-card{padding:.22in;border:1px solid #dfe3eb;border-radius:21px;background:#fff}.model-card.featured{border-color:#d5cff9;background:radial-gradient(circle at 90% 0,#dcecff 0,transparent 35%),linear-gradient(145deg,#f8f6ff,#fff)}.model-card>small{color:#6659d2;font-size:7px;font-weight:850}.model-card h3{margin:7px 0;font-size:15px}.price{font-size:30px;font-weight:850;letter-spacing:-.05em}.price small{font-size:8px;color:#7f8896;font-weight:500}.model-card p{min-height:.38in;color:#758091;font-size:8px;line-height:1.45}.model-card ul{list-style:none;padding:0;margin:10px 0 0}.model-card li{padding:5px 0;border-bottom:1px solid #eceef2;color:#657081;font-size:7.7px}.traction{display:grid;grid-template-columns:.8fr 1.2fr;gap:.22in;margin-top:.26in}.orda{padding:.31in;background:linear-gradient(145deg,#181c2c,#2d2b57);color:#fff;border:0}.orda span{font-size:8px;color:#bbb4ef;letter-spacing:.12em}.orda h3{margin:10px 0;font-size:23px}.orda p{color:#d7d5e7;font-size:9px;line-height:1.55}.orda strong{display:block;margin-top:23px;font-size:13px;color:#fff}.milestones{display:grid;grid-template-columns:1fr 1fr;gap:.11in}.mile{padding:.17in;border:1px solid #e2e5ed;border-radius:16px;background:#fff}.mile i{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:#e9f7f1;color:#268e69;font-style:normal}.mile h3{margin:10px 0 4px;font-size:11px}.mile p{margin:0;color:#7a8494;font-size:7.7px;line-height:1.45}.moat{margin-top:.25in}.moat .card{min-height:1.74in}.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:.13in;margin-top:.28in}.quarter{padding:.2in;border:1px solid #e2e5ec;border-radius:19px;background:#fff}.quarter.active{border-color:#d3ccf8;background:#f8f6ff}.quarter small{color:#6659d1;font-size:7px;font-weight:850}.quarter h3{margin:10px 0 7px;font-size:13px}.quarter p{margin:0;color:#758091;font-size:8px;line-height:1.45}.cta{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;height:5.75in}.cta h1{margin:12px 0;font-size:50px;line-height:1.01;letter-spacing:-.06em}.cta p{max-width:6in;color:#6d7889;font-size:13px;line-height:1.6}.cta-box{padding:.31in;border-radius:25px;background:linear-gradient(145deg,#5b4ec6,#7661d9);color:#fff;box-shadow:0 30px 85px #4d42a73b}.cta-box small{color:#dcd7f7;font-size:8px;letter-spacing:.1em}.cta-box h3{font-size:21px;margin:8px 0 15px}.cta-box div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ffffff24;font-size:9px}.contact{margin-top:17px;padding:12px 14px;border-radius:12px;background:#fff;color:#5d51c6;font-size:9px;font-weight:850}@media print{body{background:#fff}.deck{display:block;padding:0}.slide{margin:0}}
+.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:#7063dc}.step:not(:last-child):after{content:"";width:7px;height:7px;right:-.06in;top:.47in;border:0;border-top:1.5px solid #7568dc;border-right:1.5px solid #7568dc;border-radius:0;background:transparent;transform:rotate(45deg)}.card li:before{content:"";display:inline-block;width:5px;height:5px;margin:0 7px 1px 0;border-radius:50%;background:#2e9a73}.safe-symbol{font-family:Inter,Arial,sans-serif!important;letter-spacing:0!important}
+</style>
+</head>
+<body>
+<main class="deck">
+
+<section class="slide">
+<div class="glow g1">
+</div>
+<div class="glow g2">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">PITCH DECK · 01 / 12</div>
+</header>
+<div class="content cover">
+<div>
+<div class="eyebrow">AI + NEUROTECH · 2026</div>
+<h1>IUI</h1>
+<h2>AI-powered neuro-adaptive learning platform</h2>
+<p>Персонализированное обучение на основе диагностики знаний, когнитивных задач, EEG-данных и недельной практики.</p>
+<div class="cover-tags">
+<span>Anonymous first test</span>
+<span>IUI NeuroBand</span>
+<span>AI learning route</span>
+</div>
+</div>
+<div class="brain">
+<img src="../../public/brand/iui-mark-v3.svg">
+</div>
+</div>
+<footer class="foot">
+<span>Intelligent User Interface</span>
+<span>Участник Startup Orda</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g1">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">02 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">ПРОБЛЕМА</div>
+<h2 class="title">Оценка показывает итог.<br>
+<span class="grad">Но не объясняет причину.</span>
+</h2>
+<p class="lead">Родители и школы видят балл, но не понимают, где именно возник барьер: в знаниях, внимании, рабочей памяти, темпе обработки или сложности учебной нагрузки.</p>
+<div class="problem">
+<div class="glass big-question">
+<strong>?</strong>
+<h3>Что производит IUI</h3>
+<p>Не «ещё один график EEG», а понятный цикл решений: определить пробел → объяснить причину → дать короткую практику → повторно проверить динамику.</p>
+</div>
+<div class="questions">
+<div class="question">
+<i>1</i>
+<span>
+<b>Ребёнок не знает тему или потерял внимание?</b>
+<small>Одинаковая ошибка может иметь разные причины.</small>
+</span>
+</div>
+<div class="question">
+<i>2</i>
+<span>
+<b>Какой следующий шаг реалистичен?</b>
+<small>Рекомендации должны превращаться в ежедневное действие.</small>
+</span>
+</div>
+<div class="question">
+<i>3</i>
+<span>
+<b>Работает ли выбранная программа?</b>
+<small>Нужна повторная личная точка, а не сравнение с другими.</small>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>IUI Technology</span>
+<span>Проблема → измеримое решение</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g3">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">03 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">НОВЫЙ ПРОДУКТОВЫЙ ПУТЬ</div>
+<h2 class="title">От первого касания<br>до <span class="grad">личной образовательной системы</span>
+</h2>
+<div class="flow">
+<div class="step">
+<em>ШАГ 01</em>
+<i>0</i>
+<h3>Анонимный тест</h3>
+<p>Без регистрации: класс, язык и первая проверка знаний.</p>
+</div>
+<div class="step">
+<em>ШАГ 02</em>
+<i>AI</i>
+<h3>Когнитивный профиль</h3>
+<p>Внимание, память, реакция, логика и перенос правила.</p>
+</div>
+<div class="step">
+<em>ШАГ 03</em>
+<i>EEG</i>
+<h3>Нейросессия</h3>
+<p>NeuroBand добавляет контекст внимания и нагрузки.</p>
+</div>
+<div class="step">
+<em>ШАГ 04</em>
+<i>7D</i>
+<h3>Маршрут недели</h3>
+<p>Микро-задания по пробелам и когнитивным навыкам.</p>
+</div>
+<div class="step">
+<em>ШАГ 05</em>
+<i class="safe-symbol">R</i>
+<h3>Повторный срез</h3>
+<p>Сравнение только с личной стартовой точкой.</p>
+</div>
+</div>
+<div class="glass card" style="margin-top:.2in;display:flex;align-items:center;gap:14px">
+<div class="card-icon safe-symbol">OK</div>
+<div>
+<h3 style="margin:0">Регистрация появляется только тогда, когда нужна история</h3>
+<p>Первая сессия снижает барьер знакомства. Профиль создаётся для сохранения результата, EEG-истории и персонального плана.</p>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>IUI Technology</span>
+<span>Anonymous → Personal → Adaptive</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g1">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">04 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">ЧТО УЖЕ ДОБАВЛЕНО</div>
+<h2 class="title">Не отдельные функции.<br>
+<span class="grad">Связанный продуктовый цикл.</span>
+</h2>
+<div class="grid3 feature-grid">
+<div class="glass card">
+<div class="card-icon">0</div>
+<h3>Анонимная точка входа</h3>
+<p>Первый тест без имени, телефона, email и сохранения в базе.</p>
+</div>
+<div class="glass card">
+<div class="card-icon safe-symbol">COG</div>
+<h3>Когнитивные задачи</h3>
+<p>Внимание, рабочая память, реакция, обработка и перенос правил.</p>
+</div>
+<div class="glass card">
+<div class="card-icon">EEG</div>
+<h3>IUI NeuroBand</h3>
+<p>Bluetooth-подключение, Device ID, прошивка и качество сигнала.</p>
+</div>
+<div class="glass card">
+<div class="card-icon">PDF</div>
+<h3>Расширенный отчёт</h3>
+<p>Знания, нейроконтекст, сильные стороны, пробелы и рекомендации.</p>
+</div>
+<div class="glass card">
+<div class="card-icon">7D</div>
+<h3>Недельная практика</h3>
+<p>Микро-задания, тренировка концентрации и контрольная точка.</p>
+</div>
+<div class="glass card">
+<div class="card-icon safe-symbol">SCH</div>
+<h3>Школьная аналитика</h3>
+<p>Классы, устройства, отчёты, охват и ученики, которым нужна поддержка.</p>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>IUI Platform · React · PostgreSQL · Bluetooth</span>
+<span>04 · Product update</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g2">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">05 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">ЧТО ПОЛУЧАЕТ СЕМЬЯ</div>
+<h2 class="title">Результат превращается<br>в <span class="grad">понятный следующий шаг</span>
+</h2>
+<div class="result-layout">
+<div class="glass result-score">
+<small>ПРИМЕР ПЕРВОГО СРЕЗА</small>
+<strong>63%</strong>
+<h3>Хорошая база — есть точки роста</h3>
+<p>Первый результат задаёт личную точку отсчёта и не используется как школьная оценка.</p>
+</div>
+<div class="result-details">
+<div class="metric">
+<small>Математика</small>
+<strong>29%</strong>
+<div class="bar">
+<i style="width:29%">
+</i>
+</div>
+<p>главный учебный фокус</p>
+</div>
+<div class="metric">
+<small>Логика</small>
+<strong>73%</strong>
+<div class="bar">
+<i style="width:73%">
+</i>
+</div>
+<p>хорошая база</p>
+</div>
+<div class="metric">
+<small>Язык</small>
+<strong>78%</strong>
+<div class="bar">
+<i style="width:78%">
+</i>
+</div>
+<p>уверенная зона</p>
+</div>
+<div class="metric">
+<small>Внимание</small>
+<strong>Высокое</strong>
+<div class="bar">
+<i style="width:92%">
+</i>
+</div>
+<p>когнитивная опора</p>
+</div>
+<div class="metric">
+<small>Перенос правила</small>
+<strong>57%</strong>
+<div class="bar">
+<i style="width:57%">
+</i>
+</div>
+<p>нужна практика</p>
+</div>
+<div class="metric">
+<small>Скорость обработки</small>
+<strong>38%</strong>
+<div class="bar">
+<i style="width:38%">
+</i>
+</div>
+<p>работать без спешки</p>
+</div>
+</div>
+</div>
+<div class="glass card" style="margin-top:.16in">
+<h3 style="margin-top:0">Продуктовый output</h3>
+<p>Краткий результат после первого теста → расширенный персональный PDF после нейросессии → недельный маршрут → повторная точка динамики.</p>
+</div>
+</div>
+<footer class="foot">
+<span>Пример обезличен</span>
+<span>05 · Customer value</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g1">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">06 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">РЕАЛЬНЫЕ ПРОБЫ</div>
+<h2 class="title">Проверяем продукт<br>
+<span class="grad">не только на экране</span>
+</h2>
+<p class="lead">Бесплатные ознакомительные сессии помогают увидеть поведение продукта в реальной среде и собрать обратную связь до масштабирования.</p>
+<div class="evidence">
+<div class="glass sessions">
+<h3>Бесплатные нейродиагностические сессии</h3>
+<p>Практическая проверка сценария с детьми, родителями и образовательными организациями.</p>
+<div class="session-row">
+<i class="safe-symbol">OK</i>
+<span>
+<b>Сессии с участниками</b>
+<small>Проверка понятности заданий, посадки устройства и отчёта.</small>
+</span>
+<em>В РАБОТЕ</em>
+</div>
+<div class="session-row">
+<i class="safe-symbol">OK</i>
+<span>
+<b>Ознакомительные сессии в школах</b>
+<small>Проверка процесса подключения, расписания и ценности для педагогов.</small>
+</span>
+<em>В РАБОТЕ</em>
+</div>
+<div class="session-row">
+<i class="safe-symbol">FB</i>
+<span>
+<b>Обратная связь</b>
+<small>Уточняем язык отчёта, длительность и следующий продуктовый шаг.</small>
+</span>
+<em>ПОСТОЯННО</em>
+</div>
+</div>
+<div class="glass loop">
+<h3>Цикл валидации</h3>
+<div class="loop-ring">
+<div>
+<strong>TEST</strong>
+<small>session → feedback<br>→ update → repeat</small>
+</div>
+</div>
+</div>
+</div>
+<div class="card" style="margin-top:.12in;padding:.13in;background:#fff7ec;border:1px solid #f2dfc8;border-radius:14px">
+<p style="color:#8a673e">
+<b>Принцип:</b> не заявляем медицинскую эффективность. Проверяем образовательную полезность, удобство, понятность результата и готовность платить.</p>
+</div>
+</div>
+<footer class="foot">
+<span>Field validation</span>
+<span>Школы · родители · дети</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g3">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">07 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">РЫНКИ</div>
+<h2 class="title">Одна технология.<br>
+<span class="grad">Два понятных покупателя.</span>
+</h2>
+<div class="grid2 market">
+<div class="glass card">
+<div class="market-label">B2C · СЕМЬИ</div>
+<h3>Родителю нужен не график, а ответ: что делать дальше</h3>
+<p>Первая диагностика, расширенный отчёт, недельный план, повторная проверка и понятная коммуникация прогресса.</p>
+<strong>Direct-to-family <small>диагностика и сопровождение</small>
+</strong>
+<ul>
+<li>Низкий барьер через анонимный тест</li>
+<li>Ценность сразу после первой сессии</li>
+<li>Регулярная недельная работа</li>
+</ul>
+</div>
+<div class="glass card">
+<div class="market-label">B2B · ЧАСТНЫЕ ШКОЛЫ</div>
+<h3>Школе нужен измеримый персонализированный сервис</h3>
+<p>Диагностика учеников, классная аналитика, отчёты семьям, устройства и новый инновационный продукт школы.</p>
+<strong>School-as-a-channel <small>оборудование и сервис</small>
+</strong>
+<ul>
+<li>Инструмент для преподавателей</li>
+<li>Доверие и удержание родителей</li>
+<li>Сильное технологическое позиционирование</li>
+</ul>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>B2C + B2B</span>
+<span>07 · Go-to-market</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g1">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">08 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">БИЗНЕС-МОДЕЛЬ</div>
+<h2 class="title">Монетизация вокруг<br>
+<span class="grad">диагностики и повторяемости</span>
+</h2>
+<div class="model">
+<div class="model-card">
+<small>B2C · ПЕРВАЯ ПОКУПКА</small>
+<h3>Одна диагностика</h3>
+<div class="price">1 290 ₸ <small>/ сессия</small>
+</div>
+<p>Проверка гипотезы доступной цены для массового знакомства.</p>
+<ul>
+<li>Образовательный срез</li>
+<li>Когнитивный профиль</li>
+<li>Краткие рекомендации</li>
+</ul>
+</div>
+<div class="model-card featured">
+<small>B2B · ПОКУПКА</small>
+<h3>IUI NeuroBand</h3>
+<div class="price">50 000 ₸ <small>/ устройство</small>
+</div>
+<p>Минимальная покупка — 2 устройства. Поддержка подключается отдельно.</p>
+<ul>
+<li>От 100 000 ₸ за старт</li>
+<li>Поддержка 2 000 ₸ / устройство / мес.</li>
+<li>Платформа и обновления</li>
+</ul>
+</div>
+<div class="model-card">
+<small>B2B · АРЕНДА</small>
+<h3>Диагностический парк</h3>
+<div class="price">5 000 ₸ <small>/ устройство / мес.</small>
+</div>
+<p>Минимальная аренда — 10 устройств для регулярной работы.</p>
+<ul>
+<li>От 50 000 ₸ / месяц</li>
+<li>До 2 учеников на устройство</li>
+<li>До 4 диагностик в месяц</li>
+</ul>
+</div>
+</div>
+<p style="margin-top:12px;color:#9299a6;font-size:7.5px">Цены используются как текущие коммерческие гипотезы и уточняются по результатам customer development и пилотов.</p>
+</div>
+<footer class="foot">
+<span>IUI Technology</span>
+<span>08 · Revenue model</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g2">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">09 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">ЭКОСИСТЕМА И ПРОГРЕСС</div>
+<h2 class="title">Из прототипа<br>в <span class="grad">проверяемый EdTech-продукт</span>
+</h2>
+<div class="traction">
+<div class="glass orda">
+<span>STARTUP ECOSYSTEM</span>
+<h3>Участник<br>Startup Orda</h3>
+<p>Используем предпринимательскую среду для проверки ценностного предложения, рынка, unit-экономики и стратегии масштабирования.</p>
+<strong>IUI Technology · 2026</strong>
+</div>
+<div class="milestones">
+<div class="mile">
+<i class="safe-symbol">OK</i>
+<h3>Рабочая платформа</h3>
+<p>Ролевые кабинеты, классы, отчёты и недельные планы.</p>
+</div>
+<div class="mile">
+<i class="safe-symbol">OK</i>
+<h3>Рабочее устройство</h3>
+<p>ESP32 + BioAmp EXG, Bluetooth и идентификация.</p>
+</div>
+<div class="mile">
+<i class="safe-symbol">OK</i>
+<h3>Анонимный вход</h3>
+<p>Первая ценность без регистрации и персональных данных.</p>
+</div>
+<div class="mile">
+<i class="safe-symbol">OK</i>
+<h3>Полевые сессии</h3>
+<p>Бесплатные тесты с людьми и образовательными организациями.</p>
+</div>
+<div class="mile">
+<i class="safe-symbol">NOW</i>
+<h3>B2C customer development</h3>
+<p>Проверяем пользу, повторяемость и цену первой диагностики.</p>
+</div>
+<div class="mile">
+<i class="safe-symbol">NOW</i>
+<h3>B2B customer development</h3>
+<p>Проверяем покупку, аренду и ценность для частных школ.</p>
+</div>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>Startup Orda</span>
+<span>09 · Traction</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g3">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">10 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">ПОЧЕМУ НАС СЛОЖНО ПОВТОРИТЬ</div>
+<h2 class="title">Hardware + software +<br>
+<span class="grad">персональная динамика</span>
+</h2>
+<div class="grid3 moat">
+<div class="glass card">
+<div class="card-icon">HW</div>
+<h3>Собственное устройство</h3>
+<p>Контролируем соединение, Device ID, версию прошивки и качество входящего сигнала.</p>
+</div>
+<div class="glass card">
+<div class="card-icon">AI</div>
+<h3>Образовательная интерпретация</h3>
+<p>Связываем ответы, время решения, когнитивные задачи и нейроконтекст.</p>
+</div>
+<div class="glass card">
+<div class="card-icon safe-symbol">LOOP</div>
+<h3>Longitudinal data</h3>
+<p>Главная ценность растёт при повторных срезах и сравнении ребёнка с собственной базовой линией.</p>
+</div>
+<div class="glass card">
+<div class="card-icon">7D</div>
+<h3>Action layer</h3>
+<p>Система не заканчивается отчётом: выдаёт микро-практику на всю неделю.</p>
+</div>
+<div class="glass card">
+<div class="card-icon">B2B</div>
+<h3>School workflow</h3>
+<p>Устройства, классы, роли, отчёты и наблюдение преподавателя в одном контуре.</p>
+</div>
+<div class="glass card">
+<div class="card-icon">TR</div>
+<h3>Trust by design</h3>
+<p>Анонимная первая сессия, согласия и разделение образовательных и медицинских утверждений.</p>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>IUI defensibility</span>
+<span>Data loop, not a single test</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g1">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">11 / 12</div>
+</header>
+<div class="content">
+<div class="eyebrow">СЛЕДУЮЩИЙ ЭТАП</div>
+<h2 class="title">От бесплатных проб<br>к <span class="grad">повторяемой модели продаж</span>
+</h2>
+<div class="roadmap">
+<div class="quarter active">
+<small>01 · VALIDATE</small>
+<h3>Customer development</h3>
+<p>B2C-интервью, школьные встречи, ценность отчёта и готовность платить.</p>
+</div>
+<div class="quarter">
+<small>02 · MEASURE</small>
+<h3>Конверсионная воронка</h3>
+<p>Анонимный тест → нейросессия → профиль → недельный план → повторный срез.</p>
+</div>
+<div class="quarter">
+<small>03 · STANDARDIZE</small>
+<h3>Единый протокол</h3>
+<p>Возрастные сценарии, качество сигнала, отчёт и обучение оператора.</p>
+</div>
+<div class="quarter">
+<small>04 · SCALE</small>
+<h3>Пилотные партнёры</h3>
+<p>Частные школы, диагностические точки и прямые семейные продажи.</p>
+</div>
+</div>
+<div class="grid2" style="margin-top:.18in">
+<div class="glass card">
+<h3 style="margin-top:0">Ключевая B2C-гипотеза</h3>
+<p>Достаточно ли ценен первый результат и недельный маршрут, чтобы семья продолжила регулярную работу?</p>
+</div>
+<div class="glass card">
+<h3 style="margin-top:0">Ключевая B2B-гипотеза</h3>
+<p>Что школе удобнее: владение устройствами, аренда диагностического парка или сервис под ключ?</p>
+</div>
+</div>
+</div>
+<footer class="foot">
+<span>2026 roadmap</span>
+<span>Validate → Measure → Standardize → Scale</span>
+</footer>
+</section>
+
+<section class="slide">
+<div class="glow g1">
+</div>
+<div class="glow g2">
+</div>
+<header class="top">
+<div class="brand">
+<img src="../../public/brand/iui-mark-v3.svg">IUI <b>TECHNOLOGY</b>
+</div>
+<div class="page">12 / 12</div>
+</header>
+<div class="content cta">
+<div>
+<div class="eyebrow">LET'S BUILD THE NEXT LEARNING INTERFACE</div>
+<h1>Помогаем увидеть,<br>
+<span class="grad">как ребёнок учится</span>
+</h1>
+<p>IUI превращает диагностику знаний и нейроконтекст в конкретный образовательный маршрут — для семьи, преподавателя и школы.</p>
+<div class="cover-tags">
+<span>Пилотные школы</span>
+<span>Партнёры</span>
+<span>Инвестиции и экспертиза</span>
+</div>
+</div>
+<div class="cta-box">
+<small>ТЕКУЩИЙ ФОКУС</small>
+<h3>Нам нужны партнёры для масштабирования</h3>
+<div>
+<span>Бесплатные полевые сессии</span>
+<b>Продолжаются</b>
+</div>
+<div>
+<span>B2C и B2B customer development</span>
+<b>В работе</b>
+</div>
+<div>
+<span>Участие в Startup Orda</span>
+<b>Активно</b>
+</div>
+<div class="contact">Связаться: +7 778 303 4567</div>
+</div>
+</div>
+<footer class="foot">
+<span>IUI Technology · Aqtau</span>
+<span>Thank you</span>
+</footer>
+</section>
+
+</main>
+</body>
+</html>
