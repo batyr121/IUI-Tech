@@ -162,7 +162,7 @@ function Dashboard({back}:{back:()=>void}) {
   const roleLabel=currentUser?.role==='TEACHER'?'Учитель':currentUser?.role==='STUDENT'?'Ученик':currentUser?.role==='PARENT'?'Родитель':'Администратор';
   const visiblePages=currentUser?.role==='STUDENT'
     ?(hasDiagnostic===false
-      ?['Обзор','Диагностика','Устройства']
+      ?['Обзор','Диагностика','Устройства','Live EEG']
       :['Обзор','Диагностика','Мой план','Учебный отчёт','Устройства','Live EEG'])
     :currentUser?.role==='PARENT'
       ?['Обзор','Мой план','Учебный отчёт','Услуги и запись']
