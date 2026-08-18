@@ -23,7 +23,8 @@ assert.match(server,/answerEntries\.length!==expectedQuestions\.length/,'Initial
 assert.match(server,/saved\.homeworkPlans\[0\]\?\.id\|\|\(await createHomeworkPlan\(saved\)\)\.id/,'Diagnostic retry must recover a missing weekly plan');
 assert.match(server,/error\.code!==['"]P2002['"]/,'Concurrent diagnostic retry must be idempotent');
 assert.match(server,/connectedByUserId:req\.user!\.id/,'Device ownership check is missing');
-assert.match(server,/уже закреплено за другой организацией/,'Device must stay locked to the first registered organization');
+assert.match(server,/organizationId:req\.user!\.organizationId!/,'Device must follow the current student organization when it is not in session');
+assert.match(server,/Это устройство сейчас используется другим учеником/,'Device must not be stolen during an active session');
 assert.match(server,/JWT_SECRET\.length<32/,'Production JWT secret length check is missing');
 assert.match(server,/Укажите название школы или учебного центра/,'Teacher organization validation is missing');
 assert.match(server,/app\.post\(\['\/api\/students','\/api\/students\/import'\],auth/,'Manual student creation must stay disabled');

@@ -219,15 +219,13 @@ app.get('/api/devices',auth,asyncRoute(async(req,res)=>{
 app.get('/api/device-status',auth,requireTeacher,asyncRoute(async(req,res)=>{const devices=await prisma.device.findMany({where:{organizationId:req.user!.organizationId},orderBy:{lastSeenAt:'desc'}});const ids=devices.map(d=>d.connectedStudentId).filter(Boolean) as string[];const students=await prisma.student.findMany({where:{id:{in:ids}},select:{id:true,firstName:true,lastName:true,class:{select:{name:true}}}});const byId=new Map(students.map(s=>[s.id,s]));return res.json({devices:devices.map(d=>({...d,student:d.connectedStudentId?byId.get(d.connectedStudentId)||null:null}))})}));
 app.post('/api/devices/connect',auth,requireStudent,asyncRoute(async(req,res)=>{
   const input=z.object({deviceId:z.string().min(4).max(100),name:z.string().min(1).max(100).default('IUI NeuroBand'),firmware:z.string().max(40),sensorModel:z.string().max(100).default('BioAmp EXG Pill'),sampleRate:z.number().int().min(1).max(4000),baudRate:z.number().int().min(1200).max(2000000)}).parse(req.body);
-  const student=await prisma.student.findUnique({where:{userId:req.user!.id},select:{id:true,classId:true,class:{select:{organizationId:true}}}});
-  if(!student||!student.class?.organizationId)return res.status(400).json({error:'Профиль ученика не привязан к классу и организации'});
-  if(student.class.organizationId!==req.user!.organizationId)return res.status(403).json({error:'Аккаунт ученика не совпадает с организацией класса'});
+  const student=await prisma.student.findUnique({where:{userId:req.user!.id},select:{id:true,classId:true}});
+  if(!student)return res.status(400).json({error:'Профиль ученика не найден'});
   const existing=await prisma.device.findUnique({where:{serialNumber:input.deviceId}});
-  if(existing&&existing.organizationId!==req.user!.organizationId)return res.status(409).json({error:'Это устройство уже закреплено за другой организацией'});
   if(existing?.connectedStudentId&&existing.connectedStudentId!==student.id&&existing.status==='IN_SESSION')return res.status(409).json({error:'Это устройство сейчас используется другим учеником'});
   const common={name:input.name,firmware:input.firmware,sensorModel:input.sensorModel,sampleRate:input.sampleRate,baudRate:input.baudRate,status:'ONLINE' as const,lastSeenAt:new Date(),connectedByUserId:req.user!.id,connectedStudentId:student.id};
   const device=existing
-    ? await prisma.device.update({where:{id:existing.id},data:common})
+    ? await prisma.device.update({where:{id:existing.id},data:{...common,organizationId:req.user!.organizationId!}})
     : await prisma.device.create({data:{serialNumber:input.deviceId,organizationId:req.user!.organizationId!,...common}});
   return res.json({device:{...device,firmwareStatus:firmwareStatus(input.firmware),recommendedFirmware:currentFirmware}});
 }));
