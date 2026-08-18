@@ -18,7 +18,7 @@ const cognitiveTask=(day:number,order:number,grade:number,language:'ru'|'kk'):Ge
     {skill:kk?'Тұрақты зейін':'Устойчивое внимание',prompt:kk?'Үлгіні тап: 4837. Қай нұсқа дәл сәйкес келеді?':'Найди точное совпадение с образцом: 4837. Какой вариант полностью совпадает?',options:['4873','4837','4387','4831'],correctOption:1,hint:kk?'Әр орынды солдан оңға қарай салыстыр.':'Сравни каждую позицию слева направо.',explanation:kk?'Тек 4837 үлгіге толық сәйкес келеді. Тапсырма дәлдікті уақыт бойы сақтауды жаттықтырады.':'Только 4837 полностью совпадает с образцом. Задание тренирует устойчивое внимание к деталям.'},
     {skill:kk?'Когнитивті икемділік':'Когнитивная гибкость',prompt:kk?'Жаңа ереже: саннан кейін әріп, әріптен кейін сан келуі керек. Дұрыс қатарды таңда.':'Новое правило: после числа должна идти буква, после буквы — число. Выбери правильный ряд.',options:['2 – А – 5 – Б','2 – 5 – А – Б','А – Б – 2 – 5','2 – А – Б – 5'],correctOption:0,hint:kk?'Сан мен әріп кезектесуі керек.':'Числа и буквы должны чередоваться.',explanation:kk?'2 – А – 5 – Б қатарында сан мен әріп кезектеседі. Бұл жаңа ережеге тез ауысуды жаттықтырады.':'В ряду 2 – А – 5 – Б числа и буквы чередуются. Это упражнение на гибкое переключение правила.'}
   ];
-  return{...common,...tasks[day%tasks.length]};
+  return{...common,...tasks[(day+order)%tasks.length]};
 };
 
 const grade3Task=(day:number,order:number,skillId:string,language:'ru'|'kk'):GeneratedTask=>{
@@ -42,7 +42,7 @@ const grade3Plan=(language:'ru'|'kk',gaps:string[],sectionScores:Record<string,n
     const profile=order<2?focus[0]:order===2?focus[1]:(day%2===0?focus[0]:focus[focus.length-1]);
     tasks.push(grade3Task(day,order,profile.id,language));
   }
-  for(let day=0;day<7;day++)tasks.push(cognitiveTask(day,4,3,language));
+  for(let day=0;day<7;day++){tasks.push(cognitiveTask(day,4,3,language));tasks.push(cognitiveTask(day,5,3,language))}
   return tasks;
 };
 
@@ -50,6 +50,6 @@ export function generateHomeworkTasks(grade:number,language:'ru'|'kk',gaps:strin
   if(grade===3)return grade3Plan(language,gaps,sectionScores);
   const weakest=Object.entries(sectionScores).sort((a,b)=>a[1]-b[1])[0]?.[0]||'math',tasks:GeneratedTask[]=[],perDay=grade<=2?3:grade<=8?4:5;
   for(let day=0;day<7;day++)for(let order=0;order<perDay;order++){const emphasis=order<2?weakest:(day+order)%3===0?'logic':(day+order)%2===0?'language':'math',mathSkill=gaps.find(item=>/вычис|дроб|урав|алгеб|геометр|процент|задач|функц|корн|степ/i.test(item))||'';const task=emphasis==='math'?(grade>=8?advancedNumeric(day,order,grade,mathSkill):numeric(day,order,grade,mathSkill)):emphasis==='logic'?logic(day,order,grade):languageTask(day,order,grade,language);task.difficulty=Math.max(1,Math.min(3,task.difficulty+(day>=4?1:day===0?-1:0)));task.xpReward+=day>=4?3:0;tasks.push(task)}
-  for(let day=0;day<7;day++)tasks.push(cognitiveTask(day,perDay,grade,language));
+  for(let day=0;day<7;day++){tasks.push(cognitiveTask(day,perDay,grade,language));tasks.push(cognitiveTask(day,perDay+1,grade,language))}
   return tasks;
 }
