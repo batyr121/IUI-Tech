@@ -220,8 +220,10 @@ model HomeworkPlan {
   id                 String            @id @default(cuid())
   studentId          String
   student            Student           @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  sourceDiagnosticId String
-  sourceDiagnostic   DiagnosticAttempt @relation(fields: [sourceDiagnosticId], references: [id], onDelete: Cascade)
+  sourceDiagnosticId String?
+  sourceDiagnostic   DiagnosticAttempt? @relation(fields: [sourceDiagnosticId], references: [id], onDelete: Cascade)
+  sourceEegSessionId String?
+  sourceEegSession   EegSession?        @relation("HomeworkPlanSourceEeg", fields: [sourceEegSessionId], references: [id], onDelete: SetNull)
   weekNumber         Int               @default(1)
   startsAt           DateTime          @default(now())
   endsAt             DateTime
@@ -234,6 +236,7 @@ model HomeworkPlan {
 
   @@index([studentId, startsAt])
   @@index([sourceDiagnosticId])
+  @@index([sourceEegSessionId])
 }
 
 model WeeklyCheckIn {
@@ -348,6 +351,7 @@ model EegSession {
   samples           EegSample[]
   diagnostics       DiagnosticAttempt[]
   weeklyCheckIn     WeeklyCheckIn?
+  sourceHomeworkPlans HomeworkPlan[]    @relation("HomeworkPlanSourceEeg")
   createdAt         DateTime            @default(now())
 
   @@index([studentId, startedAt])
