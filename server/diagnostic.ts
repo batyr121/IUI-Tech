@@ -73,6 +73,9 @@ const dynamicPuzzles=(grade:number,language:'ru'|'kk',seed:number):DiagnosticQue
     mk(`dyn-att-${seed%977}`,'logic','Визуальный поиск',ru?`Найди цель среди помех: ${pattern}. Сколько символов ${shape}?`:`Кедергілер арасынан мақсатты тап: ${pattern}. ${shape} қанша?`,['2','3','4','5'],targetCount-2,'attention',level,'Целевой символ стоит на позициях 1, 3, 5 и 7.'),
     mk(`dyn-memory-${seed%971}`,'logic','Рабочая память',ru?`Удержи ряд: ${memory.join('–')}. Какая цифра была третьей?`:`Қатарды есте сақта: ${memory.join('–')}. Үшінші сан қандай?`,[String(memory[0]),String(memory[1]),String(third),String(memory[3])],2,'memory',level,'Третьим элементом был третий символ исходного ряда.'),
     mk(`dyn-rotate-${seed%967}`,'logic','Мысленное вращение',ru?`Стрелка ${rotate[start]} повернулась вправо ${turns} раз(а). Куда она смотрит?`:`Жебе ${rotate[start]} оңға ${turns} рет бұрылды. Қайда қарайды?`,rotate,rotate.indexOf(rotated),'spatial',Math.min(5,level+1),'Каждый поворот вправо смещает направление на 90 градусов.'),
+    mk(`dyn-puzzle-order-${seed%929}`,'logic','Сборка пазла',ru?'Собери 2×2 пазл по строкам. Детали: A = верх слева, B = верх справа, C = низ слева, D = низ справа. Какой порядок правильный?':'2×2 пазлды жол бойынша құрастыр. A = жоғары сол, B = жоғары оң, C = төмен сол, D = төмен оң. Дұрыс рет?',ru?['A–B–C–D','A–C–B–D','B–A–D–C','C–D–A–B']:['A–B–C–D','A–C–B–D','B–A–D–C','C–D–A–B'],0,'spatial',level,'Пазл читается по строкам: сначала верхняя, затем нижняя.'),
+    mk(`dyn-puzzle-missing-${seed%919}`,'logic','Недостающий фрагмент',ru?'Пазл: верхний ряд ▲ ●, нижний ряд ■ ?. Во втором столбце нужна круглая форма. Какой фрагмент подходит?':'Пазл: жоғарғы қатар ▲ ●, төменгі қатар ■ ?. Екінші бағанда дөңгелек пішін керек. Қай бөлік сәйкес?',['◆','●','▲','■'],1,'patterns',level,'Нужна круглая форма во втором столбце, значит подходит ●.'),
+    mk(`dyn-puzzle-layer-${seed%911}`,'logic','Порядок фрагментов',ru?'Картинка собирается слоями: фон → дом → окно → крыша. Какой слой ставится первым?':'Сурет қабатпен құралады: фон → үй → терезе → шатыр. Бірінші қай қабат?',ru?['окно','крыша','фон','дом']:['терезе','шатыр','фон','үй'],2,'analysis',Math.max(1,level-1),'Сначала ставится базовый слой — фон.'),
     mk(`dyn-rule-${seed%953}`,'logic','Переключение правила',ru?`Правило: если видишь ${shape}, прибавь 2; если ${other}, вычти 1. Что будет для ${shape} и числа ${count}?`:`Ереже: ${shape} болса +2; ${other} болса −1. ${shape} және ${count} үшін жауап?`,optionNumbers(count+2,seed+13).options,optionNumbers(count+2,seed+13).correct,'learning',level,'Нужно применить новое правило к указанному символу.'),
     mk(`dyn-lang-order-${seed%947}`,'language','Структура текста',ru?'Собери логичный порядок: 1) вывод 2) пример 3) тезис. Что идёт первым?':'Логикалық ретті тап: 1) қорытынды 2) мысал 3) тезис. Бірінші не келеді?',['вывод / қорытынды','пример / мысал','тезис','любое'],2,'comprehension',level,'В рассуждении сначала формулируется тезис.'),
     mk(`dyn-lang-instruction-${seed%941}`,'language','Понимание инструкции',ru?'Инструкция: выбери вариант, где есть цвет и форма. Какой подходит?':'Нұсқау: түс пен пішін бірге бар жауапты таңда. Қайсысы сәйкес?',['синий круг','быстро','три','после урока'],0,'comprehension',level,'«Синий круг» содержит и цвет, и форму.'),
@@ -81,9 +84,15 @@ const dynamicPuzzles=(grade:number,language:'ru'|'kk',seed:number):DiagnosticQue
 };
 export function diagnosticQuestions(grade:number,language:'ru'|'kk',seed=Date.now()){
   const base=[...gradeMath(grade),...gradeLogic(grade),...gradeLanguage(grade,language),...cognitiveExtras(grade,language),...dynamicPuzzles(grade,language,seed)].map((item,index)=>enrich(item,grade,index));
-  const core=(section:DiagnosticQuestion['section'])=>shuffle(base.filter(item=>item.section===section&&!item.id.startsWith('cx-')&&!item.id.startsWith('dyn-')),seed+section.length);
-  const cognitive=(section:DiagnosticQuestion['section'])=>shuffle(base.filter(item=>item.section===section&&(item.id.startsWith('cx-')||item.id.startsWith('dyn-'))),seed+section.length+41);
-  return [...core('math').slice(0,5),...cognitive('math').slice(0,3),...core('logic').slice(0,4),...cognitive('logic').slice(0,6),...core('language').slice(0,5),...cognitive('language').slice(0,4)];
+  const cognitive=shuffle(base.filter(item=>item.id.startsWith('cx-')||item.id.startsWith('dyn-')),seed+41);
+  const diverse=(items:DiagnosticQuestion[],count:number)=>{const result:DiagnosticQuestion[]=[],used=new Set<string>();for(const item of items){if(!used.has(item.category||'')){result.push(item);used.add(item.category||'')}if(result.length===count)return result}for(const item of items){if(!result.some(existing=>existing.id===item.id))result.push(item);if(result.length===count)break}return result};
+  const selected=diverse(cognitive,24);
+  const hasSection=(section:DiagnosticQuestion['section'])=>selected.some(item=>item.section===section);
+  for(const section of ['math','logic','language'] as const)if(!hasSection(section)){
+    const replacement=cognitive.find(item=>item.section===section&&!selected.some(existing=>existing.id===item.id));
+    if(replacement)selected[selected.length-1]=replacement;
+  }
+  return selected;
 }
 
 export function scoreDiagnostic(grade:number,language:'ru'|'kk',answers:Record<string,number>){
