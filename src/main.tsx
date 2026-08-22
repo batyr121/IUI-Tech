@@ -162,10 +162,10 @@ function Dashboard({back}:{back:()=>void}) {
   const roleLabel=currentUser?.role==='TEACHER'?'Учитель':currentUser?.role==='STUDENT'?'Ученик':currentUser?.role==='PARENT'?'Родитель':'Администратор';
   const visiblePages=currentUser?.role==='STUDENT'
     ?(hasDiagnostic===false
-      ?['Обзор','Диагностика','Устройства','Live EEG']
-      :['Обзор','Диагностика','Мой план','Учебный отчёт','Устройства','Live EEG'])
+      ?['Обзор','Диагностика','Профориентация','Устройства','Live EEG']
+      :['Обзор','Диагностика','Профориентация','Мой план','Учебный отчёт','Устройства','Live EEG'])
     :currentUser?.role==='PARENT'
-      ?['Обзор','Мой план','Учебный отчёт','Услуги и запись']
+      ?['Обзор','Профориентация','Мой план','Учебный отчёт','Услуги и запись']
       :['Обзор','Классы','Ученики','Прогресс','Отчёты'];
   const roleNav=sideNav.filter(([,name])=>visiblePages.includes(name as string));
   return <div className="app-shell"><aside className={'app-side '+(mobile?'shown':'')}><div className="side-logo"><Logo/><button onClick={()=>setMobile(false)}><X/></button></div><div className="workspace"><div className="school-icon">{orgName[0]}</div><span><b>{orgName}</b><small>{roleLabel} · аккаунт</small></span><ChevronDown/></div><nav>{roleNav.map(([Icon,name]:any)=><button className={active===name?'active':''} onClick={()=>{setActive(name);setMobile(false)}} key={name}><Icon/>{name}{name==='Live EEG'&&<i/>}</button>)}</nav><div className="side-bottom"><button onClick={()=>setActive('Настройки')}><Settings/>Настройки</button><button title="Центр поддержки"><CircleHelp/>Помощь</button><div className="profile"><div className="avatar av1">{initials}</div><span><b>{fullName}</b><small>{roleLabel}</small></span><button title="Выйти" onClick={async()=>{await authApi.logout();back()}}><MoreHorizontal/></button></div></div></aside><div className="app-content"><header className="app-header"><button className="mobile-menu" onClick={()=>setMobile(true)}><Menu/></button><div className="crumb">{orgName} <ChevronRight/> <b>{active}</b></div><div className="app-actions"><label><Search/><input placeholder="Поиск..."/><kbd>⌘ K</kbd></label><button title="Уведомления"><Bell/></button><div className="avatar av1">{initials}</div></div></header><main className="dashboard">{loadError&&<div className="api-error">{loadError}</div>}{active==='Обзор'?<RoleOverview user={currentUser} setActive={setActive}/>:<PlatformPage page={active}/>}</main></div></div>

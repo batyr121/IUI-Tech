@@ -70,13 +70,13 @@ for(const language of ['ru','kk'])for(let grade=1;grade<=11;grade++){
     assert.equal(new Set(weekly.map(item=>item.id)).size,6,`Week ${week}, grade ${grade}/${language} has duplicate check-in IDs`);
   }
   const tasks=generateHomeworkTasks(grade,language,['Вычисления'],{math:40,logic:65,language:75});
-  const expected=(grade<=2?21:grade<=8?28:35)+14;
+  const expected=(grade<=2?21:grade<=8?28:35)+21;
   assert.equal(tasks.length,expected,`Wrong weekly task count for grade ${grade}`);
   assert.deepEqual(new Set(tasks.map(item=>item.dayIndex)),new Set([0,1,2,3,4,5,6]));
   for(let day=0;day<7;day++)assert.equal(tasks.filter(item=>item.dayIndex===day).length,expected/7,`Uneven daily plan for grade ${grade}`);
   const cognitive=tasks.filter(item=>item.subject==='Нейроразминка'||item.subject==='Ми жаттығуы');
-  assert.equal(cognitive.length,14,`Grade ${grade}/${language} must have two cognitive warm-ups per day`);
-  for(let day=0;day<7;day++)assert.equal(cognitive.filter(item=>item.dayIndex===day).length,2,`Cognitive warm-ups must include two tasks on day ${day+1}`);
+  assert.equal(cognitive.length,21,`Grade ${grade}/${language} must have three cognitive warm-ups per day`);
+  for(let day=0;day<7;day++)assert.equal(cognitive.filter(item=>item.dayIndex===day).length,3,`Cognitive warm-ups must include three tasks on day ${day+1}`);
   for(const task of tasks){assert.equal(task.options.length,4);assert.equal(new Set(task.options).size,4,`Duplicate task options: ${task.prompt}`);assert.ok(task.correctOption>=0&&task.correctOption<4);assert.ok(task.xpReward>0);assert.ok(task.hint.length>5);assert.ok(task.explanation.length>5)}
 }
 for(const file of ['../dist/index.html','../public/brand/iui-mark-v3.svg','../firmware/iui_bioamp_esp32/iui_bioamp_esp32.ino'])assert.ok(existsSync(new URL(file,import.meta.url)),`Missing release artifact: ${file}`);

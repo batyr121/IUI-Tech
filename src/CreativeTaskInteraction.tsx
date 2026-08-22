@@ -14,9 +14,9 @@ type Props = {
   feedback: any;
 };
 
-const textOf = (task: Task) => `${task.skill || ''} ${task.prompt || ''}`;
+const textOf = (task?: Partial<Task> | null) => `${task?.skill || ''} ${task?.prompt || ''}`;
 
-export const isCreativeTask = (task: Task) =>
+export const isCreativeTask = (task?: Partial<Task> | null) =>
   /пазл|фрагмент|құрастыр|бөлік|сбор|соедин|сәйкест|пары|жұп|код|code|алгоритм|робот|микро-проект|профориентация|конструктор|истори|story|маршрут|матрица|сканирование|кеңістіктік|пространственная|координац|баланс|хлоп|шапалақ|айқас/i.test(textOf(task));
 
 const modeOf = (task: Task) => {
