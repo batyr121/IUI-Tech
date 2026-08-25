@@ -9,7 +9,7 @@ const logic=(day:number,order:number,grade:number):GeneratedTask=>{const seed=da
 const languageTask=(day:number,order:number,grade:number,language:'ru'|'kk'):GeneratedTask=>{const common={dayIndex:day,orderIndex:order,subject:language==='kk'?'Қазақ тілі':'Русский язык',grade,difficulty:Math.ceil(grade/4),xpReward:12};if(language==='kk'){const items=[{skill:'Сөз мағынасы',prompt:'«Қуанышты» сөзіне мағыналас сөзді таңдаңыз.',options:['мұңды','көңілді','ашулы','әлсіз'],correctOption:1,hint:'Мағынасы жақын сөзді іздеңіз.',explanation:'«Қуанышты» және «көңілді» — мағыналас сөздер.'},{skill:'Емле',prompt:'Дұрыс жазылған сөзді табыңыз.',options:['оқұшы','оқушы','оқышы','оқушыы'],correctOption:1,hint:'Сөздің түбірі — «оқу».',explanation:'Дұрыс нұсқа — «оқушы».'},{skill:'Сөйлем',prompt:'«Бала есеп шығарды» сөйлеміндегі бастауышты табыңыз.',options:['бала','есеп','шығарды','есеп шығарды'],correctOption:0,hint:'Іс-әрекетті кім орындады?',explanation:'Есепті шығарған — бала, сондықтан бастауыш «бала».'}];return{...common,...items[(day+order)%items.length]}}const items=[{skill:'Лексика',prompt:'Выберите синоним слова «внимательный».',options:['рассеянный','сосредоточенный','быстрый','громкий'],correctOption:1,hint:'Ищи слово с близким значением.',explanation:'«Сосредоточенный» близок по значению к слову «внимательный».'},{skill:'Орфография',prompt:'В каком слове нет ошибки?',options:['задачя','задача','зода́ча','задачча'],correctOption:1,hint:'После Ч обычно пишется А, не Я.',explanation:'Правильное написание — «задача».'},{skill:'Понимание текста',prompt:'«После урока Айдана проверила решение». Что она сделала после урока?',options:['начала урок','проверила решение','ушла спать','прочитала правило'],correctOption:1,hint:'Ответ прямо указан в предложении.',explanation:'После урока Айдана проверила решение.'}];return{...common,...items[(day+order)%items.length]}};
 
 const cognitiveTask=(day:number,order:number,grade:number,language:'ru'|'kk',neuroSkills:string[]=[]):GeneratedTask=>{
-  if((day+order+grade)%2===0)return generateCognitiveMechanicTask(day,order,grade,language,neuroSkills);
+  return generateCognitiveMechanicTask(day,order,grade,language,neuroSkills);
   const kk=language==='kk',difficulty=day<2?1:day<5?2:3,common={dayIndex:day,orderIndex:order,subject:kk?'Ми жаттығуы':'Нейроразминка',grade,difficulty,xpReward:14+difficulty*2};
   const adaptive=[
     {match:/фокус|focus|устойчив/i,task:{skill:kk?'Тұрақты фокус':'Устойчивый фокус',prompt:kk?'30 секунд ережесі: алдымен мақсатты тап. Мақсат: тек 7 санын сана — 7 1 7 4 2 7 9. Неше 7 бар?':'Правило 30 секунд: сначала найди цель. Цель: считай только число 7 — 7 1 7 4 2 7 9. Сколько здесь 7?',options:['2','3','4','5'],correctOption:1,hint:kk?'Бір ғана мақсатты ұста: 7.':'Держи одну цель: только 7.',explanation:kk?'7 саны үш рет кездеседі. Бұл фокусты бір мақсатта ұстауды дамытады.':'Число 7 встречается три раза. Это тренирует удержание фокуса на одной цели.'}},
@@ -113,7 +113,7 @@ const grade3Plan=(language:'ru'|'kk',gaps:string[],sectionScores:Record<string,n
     const profile=order<2?focus[0]:order===2?focus[1]:(day%2===0?focus[0]:focus[focus.length-1]);
     tasks.push(grade3Task(day,order,profile.id,language));
   }
-  for(let day=0;day<7;day++){tasks.push(cognitiveTask(day,4,3,language,neuroSkills));tasks.push(cognitiveTask(day,5,3,language,neuroSkills));tasks.push(cognitiveTask(day,6,3,language,neuroSkills))}
+  for(let day=0;day<7;day++){tasks.push(cognitiveTask(day,4,3,language,neuroSkills));tasks.push(cognitiveTask(day,5,3,language,neuroSkills));tasks.push(cognitiveTask(day,6,3,language,neuroSkills));tasks.push(cognitiveTask(day,7,3,language,neuroSkills))}
   return tasks;
 };
 
@@ -121,6 +121,6 @@ export function generateHomeworkTasks(grade:number,language:'ru'|'kk',gaps:strin
   if(grade===3)return grade3Plan(language,gaps,sectionScores,neuroSkills);
   const weakest=Object.entries(sectionScores).sort((a,b)=>a[1]-b[1])[0]?.[0]||'math',tasks:GeneratedTask[]=[],perDay=grade<=2?3:grade<=8?4:5;
   for(let day=0;day<7;day++)for(let order=0;order<perDay;order++){const emphasis=order<2?weakest:(day+order)%3===0?'logic':(day+order)%2===0?'language':'math',mathSkill=gaps.find(item=>/вычис|дроб|урав|алгеб|геометр|процент|задач|функц|корн|степ/i.test(item))||'';const task=emphasis==='math'?(grade>=8?advancedNumeric(day,order,grade,mathSkill):numeric(day,order,grade,mathSkill)):emphasis==='logic'?logic(day,order,grade):languageTask(day,order,grade,language);task.difficulty=Math.max(1,Math.min(3,task.difficulty+(day>=4?1:day===0?-1:0)));task.xpReward+=day>=4?3:0;tasks.push(task)}
-  for(let day=0;day<7;day++){tasks.push(cognitiveTask(day,perDay,grade,language,neuroSkills));tasks.push(cognitiveTask(day,perDay+1,grade,language,neuroSkills));tasks.push(cognitiveTask(day,perDay+2,grade,language,neuroSkills))}
+  for(let day=0;day<7;day++){tasks.push(cognitiveTask(day,perDay,grade,language,neuroSkills));tasks.push(cognitiveTask(day,perDay+1,grade,language,neuroSkills));tasks.push(cognitiveTask(day,perDay+2,grade,language,neuroSkills));tasks.push(cognitiveTask(day,perDay+3,grade,language,neuroSkills))}
   return tasks;
 }
