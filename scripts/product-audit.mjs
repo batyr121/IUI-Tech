@@ -17,12 +17,14 @@ assert.deepEqual(duplicates,[],'API contains duplicate route definitions');
 for(const model of ['DiagnosticAttempt','HomeworkPlan','HomeworkTask','HomeworkAttempt','WeeklyCheckIn'])assert.match(schema,new RegExp(`model ${model}\\s*{`),`Missing Prisma model ${model}`);
 assert.match(schema,/eegSessionId\s+String\?\s+@unique/,'A single EEG session must not create duplicate diagnostics');
 for(const field of ['attentionDelta','focusDelta','engagementDelta','fatigueDelta','relaxationDelta','signalQuality'])assert.match(schema,new RegExp(`\\b${field}\\s+Int`),`Weekly check-in is missing ${field}`);
-assert.match(server,/eegSessionId:z\.string\(\)\.min\(1\)/,'Diagnostic must require a completed EEG session');
-assert.match(server,/sectionTimeline\.some\(item=>item\.metrics\.samples<3\)/,'Every diagnostic section must contain EEG samples');
+assert.match(server,/eegSessionId:z\.string\(\)\.min\(1\)\.optional\(\)/,'Diagnostic must support knowledge-only mode without a device');
+assert.match(server,/if\(eegSession&&sectionTimeline\.some/,'EEG section sample checks must still run when a device is used');
 assert.match(server,/answerEntries\.length!==expectedQuestions\.length/,'Initial diagnostic must reject incomplete or foreign answers');
 assert.match(server,/saved\.homeworkPlans\[0\]\?\.id\|\|\(await createHomeworkPlan\(saved\)\)\.id/,'Diagnostic retry must recover a missing weekly plan');
 assert.match(server,/error\.code!==['"]P2002['"]/,'Concurrent diagnostic retry must be idempotent');
 assert.match(server,/connectedByUserId:req\.user!\.id/,'Device ownership check is missing');
+assert.match(server,/organizationId:req\.user!\.organizationId!/,'Device must follow the current student organization when it is not in session');
+assert.match(server,/Это устройство сейчас используется другим учеником/,'Device must not be stolen during an active session');
 assert.match(server,/JWT_SECRET\.length<32/,'Production JWT secret length check is missing');
 assert.match(server,/Укажите название школы или учебного центра/,'Teacher organization validation is missing');
 assert.match(server,/app\.post\(\['\/api\/students','\/api\/students\/import'\],auth/,'Manual student creation must stay disabled');
@@ -68,13 +70,13 @@ for(const language of ['ru','kk'])for(let grade=1;grade<=11;grade++){
     assert.equal(new Set(weekly.map(item=>item.id)).size,6,`Week ${week}, grade ${grade}/${language} has duplicate check-in IDs`);
   }
   const tasks=generateHomeworkTasks(grade,language,['Вычисления'],{math:40,logic:65,language:75});
-  const expected=(grade<=2?21:grade<=8?28:35)+7;
+  const expected=(grade<=2?21:grade<=8?28:35)+21;
   assert.equal(tasks.length,expected,`Wrong weekly task count for grade ${grade}`);
   assert.deepEqual(new Set(tasks.map(item=>item.dayIndex)),new Set([0,1,2,3,4,5,6]));
   for(let day=0;day<7;day++)assert.equal(tasks.filter(item=>item.dayIndex===day).length,expected/7,`Uneven daily plan for grade ${grade}`);
   const cognitive=tasks.filter(item=>item.subject==='Нейроразминка'||item.subject==='Ми жаттығуы');
-  assert.equal(cognitive.length,7,`Grade ${grade}/${language} must have one cognitive warm-up per day`);
-  assert.equal(new Set(cognitive.map(item=>item.dayIndex)).size,7,`Cognitive warm-ups must cover all seven days`);
+  assert.equal(cognitive.length,21,`Grade ${grade}/${language} must have three cognitive warm-ups per day`);
+  for(let day=0;day<7;day++)assert.equal(cognitive.filter(item=>item.dayIndex===day).length,3,`Cognitive warm-ups must include three tasks on day ${day+1}`);
   for(const task of tasks){assert.equal(task.options.length,4);assert.equal(new Set(task.options).size,4,`Duplicate task options: ${task.prompt}`);assert.ok(task.correctOption>=0&&task.correctOption<4);assert.ok(task.xpReward>0);assert.ok(task.hint.length>5);assert.ok(task.explanation.length>5)}
 }
 for(const file of ['../dist/index.html','../public/brand/iui-mark-v3.svg','../firmware/iui_bioamp_esp32/iui_bioamp_esp32.ino'])assert.ok(existsSync(new URL(file,import.meta.url)),`Missing release artifact: ${file}`);

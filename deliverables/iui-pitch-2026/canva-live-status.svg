@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="180" viewBox="0 0 760 180">
+  <rect x="3" y="3" width="754" height="174" rx="32" fill="#FFFFFF" stroke="#E2E7EF" stroke-width="3"/>
+  <rect x="31" y="38" width="104" height="104" rx="28" fill="#E7F8F0"/>
+  <path d="M58 91l17 17 34-39" fill="none" stroke="#2EA578" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="165" y="76" font-family="Inter,Arial" font-size="23" font-weight="700" fill="#172039">Сигнал стабилен</text>
+  <text x="165" y="111" font-family="Inter,Arial" font-size="18" fill="#7B8595">IUI NeuroBand · Live EEG</text>
+  <text x="620" y="100" font-family="Inter,Arial" font-size="42" font-weight="800" fill="#2EA578">98%</text>
+</svg>
